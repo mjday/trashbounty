@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_035350) do
+ActiveRecord::Schema.define(version: 2019_08_13_041849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bank_recyclables", force: :cascade do |t|
+    t.float "rate_per_kg"
+    t.bigint "bank_id"
+    t.bigint "recyclable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_bank_recyclables_on_bank_id"
+    t.index ["recyclable_id"], name: "index_bank_recyclables_on_recyclable_id"
+  end
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -23,6 +33,43 @@ ActiveRecord::Schema.define(version: 2019_08_13_035350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_banks_on_user_id"
+  end
+
+  create_table "order_recyclables", force: :cascade do |t|
+    t.integer "kg_collected"
+    t.bigint "order_id"
+    t.bigint "recyclable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_recyclables_on_order_id"
+    t.index ["recyclable_id"], name: "index_order_recyclables_on_recyclable_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.date "date"
+    t.float "total_kg"
+    t.float "total_amount"
+    t.string "payment_type"
+    t.bigint "user_id"
+    t.bigint "bank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_orders_on_bank_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "recyclables", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_reviews_on_order_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,5 +87,12 @@ ActiveRecord::Schema.define(version: 2019_08_13_035350) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bank_recyclables", "banks"
+  add_foreign_key "bank_recyclables", "recyclables"
   add_foreign_key "banks", "users"
+  add_foreign_key "order_recyclables", "orders"
+  add_foreign_key "order_recyclables", "recyclables"
+  add_foreign_key "orders", "banks"
+  add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "orders"
 end

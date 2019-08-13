@@ -1,0 +1,2 @@
+class Recyclable < ApplicationRecord
+end
