@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_041849) do
+ActiveRecord::Schema.define(version: 2019_08_13_053936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(version: 2019_08_13_041849) do
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 
-  create_table "order_recyclables", force: :cascade do |t|
+  create_table "collection_recyclables", force: :cascade do |t|
     t.integer "kg_collected"
-    t.bigint "order_id"
+    t.bigint "collection_id"
     t.bigint "recyclable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_recyclables_on_order_id"
-    t.index ["recyclable_id"], name: "index_order_recyclables_on_recyclable_id"
+    t.index ["collection_id"], name: "index_collection_recyclables_on_collection_id"
+    t.index ["recyclable_id"], name: "index_collection_recyclables_on_recyclable_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "collections", force: :cascade do |t|
     t.date "date"
     t.float "total_kg"
     t.float "total_amount"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2019_08_13_041849) do
     t.bigint "bank_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bank_id"], name: "index_orders_on_bank_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["bank_id"], name: "index_collections_on_bank_id"
+    t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
   create_table "recyclables", force: :cascade do |t|
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2019_08_13_041849) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
-    t.bigint "order_id"
+    t.bigint "collection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_reviews_on_order_id"
+    t.index ["collection_id"], name: "index_reviews_on_collection_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,9 +90,9 @@ ActiveRecord::Schema.define(version: 2019_08_13_041849) do
   add_foreign_key "bank_recyclables", "banks"
   add_foreign_key "bank_recyclables", "recyclables"
   add_foreign_key "banks", "users"
-  add_foreign_key "order_recyclables", "orders"
-  add_foreign_key "order_recyclables", "recyclables"
-  add_foreign_key "orders", "banks"
-  add_foreign_key "orders", "users"
-  add_foreign_key "reviews", "orders"
+  add_foreign_key "collection_recyclables", "collections"
+  add_foreign_key "collection_recyclables", "recyclables"
+  add_foreign_key "collections", "banks"
+  add_foreign_key "collections", "users"
+  add_foreign_key "reviews", "collections"
 end
