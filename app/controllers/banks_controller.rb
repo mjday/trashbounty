@@ -6,7 +6,6 @@ class BanksController < ApplicationController
   end
 
   def show
-    @bank = Bank.new
   end
 
   def new
