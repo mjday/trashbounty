@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :new, :create]
   end
 
+  get "dashboard", to: "users#dashboard", as: :users_dashboard
+
+
 end
