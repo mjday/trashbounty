@@ -4,25 +4,26 @@
     <p>Make the world a better place !</p>
 
 
-  <div class="mt-5 d-flex flex-row justify-content-between ">
-    <div>
+
+    <div class="mt-5 d-flex flex-row justify-content-between ">
       <form class="search-form p-3">
         <div class="form-group">
           <input type="text" class="form-control" id="user_address" placeholder="Select Location">
         </div>
       </form>
     </div>
-</div>
+
 
 
     <%= button_to "Log In", new_user_session_path, class: "btn btn-center btn-lg btn-primary"  %>
     <%= link_to "Start now", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+  </div>
 </div>
 
-  
-  
-<%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
 
-<%= link_to 'Sign up', new_user_registration_path, class: "btn btn-warning" %>
 
-<%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+<%#= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
+
+<%#= link_to 'Sign up', new_user_registration_path, class: "btn btn-warning" %>
+
+<%#= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
