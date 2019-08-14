@@ -43,7 +43,7 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :address)
+    params.require(:bank).permit(:name, :address, :phone_number, :website, :country, :materials_accepted, :products_accepted)
   end
 
 end
