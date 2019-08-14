@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_094614) do
+ActiveRecord::Schema.define(version: 2019_08_14_041824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,14 @@ ActiveRecord::Schema.define(version: 2019_08_13_094614) do
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.date "date"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "website"
+    t.string "country"
+    t.string "materials_accepted"
+    t.string "products_accepted"
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 
@@ -69,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_094614) do
     t.bigint "collection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
     t.index ["collection_id"], name: "index_reviews_on_collection_id"
   end
 
