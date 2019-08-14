@@ -16,7 +16,7 @@ serialized_banks = File.read(filepath)
 
 banks = JSON.parse(serialized_banks)
 
-banks.each do |bank|
+banks.first(10).each do |bank|
   bk = Bank.create!(
     name: bank["name"],
     address: bank["address"],
