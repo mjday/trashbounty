@@ -52,5 +52,3 @@ comments = ["Great", "Good", "Okay", "Poor", "Terrible"]
     collection: Collection.find(rand(1..10))
   )
 end
-
-
