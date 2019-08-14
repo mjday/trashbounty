@@ -4,25 +4,22 @@
     <p>Make the world a better place !</p>
 
 
-  <div class="mt-5 d-flex flex-row justify-content-between ">
-    <div>
-      <form class="search-form p-3">
-        <div class="form-group">
-          <input type="text" class="form-control" id="user_address" placeholder="Select Location">
+  <div class="container">
+            <%= button_to "Sign In", new_user_session_path, class: "btn btn-center btn-lg btn-primary"  %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6">
+        <form class="search-form p-3">
+          <div class="form-group">
+            <input type="text" class="form-control" id="user_address" placeholder="Select Location">
+          </div>
+        </form>
         </div>
-      </form>
+      </div>
     </div>
+  </div>
 </div>
 
 
-    <%= button_to "Log In", new_user_session_path, class: "btn btn-center btn-lg btn-primary"  %>
-    <%= link_to "Start now", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
-</div>
 
-  
-  
-<%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
 
-<%= link_to 'Sign up', new_user_registration_path, class: "btn btn-warning" %>
-
-<%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
