@@ -6,6 +6,7 @@ class BanksController < ApplicationController
   end
 
   def new
+    @recyclables = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
   end
 
   def create
