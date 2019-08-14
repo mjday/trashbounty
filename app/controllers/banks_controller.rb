@@ -2,11 +2,18 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:query].present?
-      @banks = Bank.where("address ILIKE ?", "%#{params[:query]}%")
-    else
-      @banks = Bank.all
+    @banks = Bank.geocoded
+    @markers = @banks.map do |bank|
+      {
+        lat: bank.latitude,
+        lng: bank.longitude
+      }
     end
+    # if params[:query].present?
+    #   @banks = Bank.where("address ILIKE ?", "%#{params[:query]}%")
+    # else
+    #   @banks = Bank.all
+    # end
   end
 
   def show

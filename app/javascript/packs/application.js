@@ -4,3 +4,6 @@ import {initMap} from "../plugins/init_map";
 
 initAutocomplete();
 initMap();
+
+
+

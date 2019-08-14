@@ -1,1 +1,9 @@
-<div id="map" style="height: 50vh; width: 100vh"></div>
+<div id="map" data-markers="<%= @markers.to_json %>" style="height: 50vh; width: 100vh"></div>
+
+<div class="container">
+  <div class="row">
+    <% if params[:query] %>
+      <h3>Recycling Banks in <%= params[:query].capitalize %></h3>
+    <% end %>
+  </div>
+</div>
