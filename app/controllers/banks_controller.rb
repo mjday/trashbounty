@@ -14,6 +14,8 @@ class BanksController < ApplicationController
 
   def create
     @bank = Bank.new(bank_params)
+    @bank.user_id = current_user.id
+
     if @bank.save
       redirect_to bank_path(@bank)
     else
