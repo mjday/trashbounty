@@ -10,10 +10,13 @@ class BanksController < ApplicationController
 
   def new
     @bank = Bank.new
+    @recyclables = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
   end
 
   def create
     @bank = Bank.new(bank_params)
+    @bank.user_id = current_user.id
+
     if @bank.save
       redirect_to bank_path(@bank)
     else

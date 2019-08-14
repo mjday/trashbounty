@@ -3,23 +3,19 @@
     <h1>Trash Bounty!</h1>
     <p>Make the world a better place !</p>
 
-
-  <div class="container">
-            <%= button_to "Sign In", new_user_session_path, class: "btn btn-center btn-lg btn-primary"  %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
-    <div class="row justify-content-center align-items-center">
-      <div class="col-md-6">
-        <form class="search-form p-3">
-          <div class="form-group">
-            <input type="text" class="form-control" id="user_address" placeholder="Select Location">
-          </div>
-        </form>
+    <div class="container">
+      <%= button_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+          <form class="search-form p-3">
+            <div class="form-group">
+              <input type="text" class="form-control" id="user_address" placeholder="Select Location">
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+
   </div>
 </div>
-
-
-
-

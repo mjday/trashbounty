@@ -11,8 +11,16 @@
   <link rel="manifest" href="/manifest.json" />
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
   <body>
-    <%= render 'shared/navbar' %>
+
+    <% unless controller.controller_name == "pages" && controller.action_name == "home" ||
+      controller.controller_name == "registrations" && controller.action_name == "new" ||
+      controller.controller_name == "sessions" && controller.action_name == "new" %>
+        <%= render 'shared/navbar' %>
+    <% end %>
+
+    <!-- flash needs to be fixed (review github issues) -->
     <%= render 'shared/flashes' %>
+
     <%= yield %>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></script>
     <%= javascript_include_tag 'application' %>

@@ -28,12 +28,16 @@ ActiveRecord::Schema.define(version: 2019_08_14_070532) do
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.date "date"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "phone_number"
+    t.string "website"
+    t.string "country"
+    t.string "materials_accepted"
+    t.string "products_accepted"
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_070532) do
     t.bigint "collection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
     t.index ["collection_id"], name: "index_reviews_on_collection_id"
   end
 
