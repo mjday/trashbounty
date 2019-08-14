@@ -14,7 +14,11 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbiYJAvUb0O3L2GzZBLHsVu1bo94_-748"></script>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
+
+
+<!-- #{<%= ENV['GOOGLE_API_KEY'] %>} -->
