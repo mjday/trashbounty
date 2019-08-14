@@ -1,0 +1,25 @@
+.banner-sign-up{
+   height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), image-url("bottle-blur.jpg");
+  background-size: cover;
+  background-position: 28% 60%;
+  //the background image
+   h1 {
+      text-align: center;
+      color:white;
+      font-weight: bold;
+      font-size: 40px;
+      height: 36px;
+      left: 120px;
+      top: 288px;
+
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+  };
+};
