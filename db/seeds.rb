@@ -27,7 +27,6 @@ banks.each do |bank|
     products_accepted: bank["products_accepted"],
     user: User.find(rand(User.first.id..User.count))
   )
-  p bk
 end
 
 types = ["Bitcoin", "Cash"]
