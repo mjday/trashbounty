@@ -1,9 +1,16 @@
-<div id="map" data-markers="<%= @markers.to_json %>" style="height: 50vh; width: 100vh"></div>
+<div id="map" data-center="<%= @center.to_json %>" data-markers="<%= @markers.to_json %>" style="height: 50vh; width: 100vh"></div>
 
 <div class="container">
   <div class="row">
     <% if params[:query] %>
-      <h3>Recycling Banks in <%= params[:query].capitalize %></h3>
+    <h3>Recycling Banks in <%= params[:query].capitalize %></h3>
     <% end %>
+    <% @banks.each do |bank| %>
+    <%= link_to bank_path(bank) do %>
+    <p><%= bank.name %></p>
+    <p>Address: <%= bank.address%></p>
+    <% end %>
+    <% end %>
+
   </div>
 </div>

@@ -2,14 +2,24 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
+    @center = ''
     @banks = Bank.geocoded
+    if params[:query].present?
+      @banks = @banks.near(params[:query], 2000)
+    end
+    if @banks.empty?
+      result = Geocoder.search(params[:query])
+      @center = result.first.data["geometry"]['location']
+    end
+
     @markers = @banks.map do |bank|
       {
         lat: bank.latitude,
         lng: bank.longitude
+        # infowindow: { content: render_to_string(partial: "/shared/_map_info_window", locals: { bank: bank }) }
       }
     end
-    # if params[:query].present?
+    # i
     #   @banks = Bank.where("address ILIKE ?", "%#{params[:query]}%")
     # else
     #   @banks = Bank.all
