@@ -1,12 +1,44 @@
-<h2>dashboard</h2>
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+      <h2>dashboard</h2>
+      <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+
+      <!-- Users will have different Dashboard views -->
+
+      <!-- if user.business == false (default)
+      # => Collector account  -->
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <p>Total Amount Earned</p>
+            <p>Total Amount Collected</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <p>Total Amount Earned</p>
+            <p>Total Amount Collected</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- if user.business == true
+      # => Business account
+      -->
+
+
+     </div>
+  </div>
+</div>
 
 
 
 
 
-
-
-<%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
-
-
-<%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
