@@ -15,8 +15,8 @@ class BanksController < ApplicationController
     @markers = @banks.map do |bank|
       {
         lat: bank.latitude,
-        lng: bank.longitude
-        # infowindow: { content: render_to_string(partial: "/shared/_map_info_window", locals: { bank: bank }) }
+        lng: bank.longitude,
+        infowindow: render_to_string(partial: "map_info_window", locals: { bank: bank })
       }
     end
     # i
