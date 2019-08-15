@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :phone_number, :business])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :phone_number, :business, :bitcoin_address])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :phone_number, :bitcoin_address])
   end
 
   def after_sign_in_path_for(resource)
