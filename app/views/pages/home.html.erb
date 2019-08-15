@@ -4,8 +4,8 @@
     <p>Make the world a better place !</p>
 
     <div class="container">
-      <%= button_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+      <div id = "buttons"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %></div>
       <div class="row justify-content-center align-items-center">
         <div class="col-md-6" id="search-box">
           <form action="/banks" method="get"class="search-form p-3">
