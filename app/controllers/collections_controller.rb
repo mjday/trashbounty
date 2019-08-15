@@ -2,7 +2,13 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: [:create]
 
   def index
-    @collections = Collection.all
+    if !current_user.business
+      @collections = Collection.all
+    else
+      redirect_back fallback_location: root_path
+    end
+
+    # only the current user should be able to see the collection history
   end
 
   def new
@@ -14,6 +20,7 @@ class CollectionsController < ApplicationController
     @collection.user_id = current_user.id
     @bank = Bank.find(params[:bank_id])
     @collection.bank_id = @bank.id
+
     if @collection.save
       redirect_to users_dashboard_path
     else
