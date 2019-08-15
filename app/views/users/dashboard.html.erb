@@ -1,44 +1,67 @@
+<!-- Users will have different Dashboard views -->
+
+<!-- if Collecter User (user.business == false)
+then show this container -->
 <div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="row">
+    <div class="col">
+      <!-- <img src="" alt=""> -->
+      <p class="text-center">Total Amount Earned</p>
+      <p>IDR: </p>
+      <p>BTC: </p>
+    </div>
 
-      <h2>dashboard</h2>
-      <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+    <div class="col">
+      <!-- <img src="" alt=""> -->
+      <p class="text-center">Total Amount Collected</p>
+      <p>Kg: </p>
+    </div>
 
-      <!-- Users will have different Dashboard views -->
+    <div class="w-100"></div>
 
-      <!-- if user.business == false (default)
-      # => Collector account  -->
-
-      <div class="container">
-
-        <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-6">
-            <p>Total Amount Earned</p>
-            <p>Total Amount Collected</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-6">
-            <p>Total Amount Earned</p>
-            <p>Total Amount Collected</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- if user.business == true
-      # => Business account
-      -->
-
-
-     </div>
+    <div class="col">
+      <!-- <img src="" alt=""> -->
+      <p class="text-center">View Collection History</p>
+      <p class="text-left">link to..</p>
+    </div>
   </div>
 </div>
 
+<hr>
 
+
+  <!-- if Business User (user.business == true)
+    then show this container -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">View My Recycle Bank</p>
+        <p>(show page of recycle bank if user owns this bank, show the edit/destroy button) </p>
+      </div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">View Transaction History</p>
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">List a Recycling Center</p>
+      </div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">See my Reviews</p>
+      </div>
+
+      <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+
+    </div>
+  </div>
 
 
 
