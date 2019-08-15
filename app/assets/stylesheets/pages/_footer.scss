@@ -1,0 +1,33 @@
+dir.banner-footer{
+   height: 55px;
+  position: sticky;
+  padding: 0px 0px 0px 0px;
+  bottom: 0;
+}
+//make the banner at the bottom of the page -50px and made it sticky
+
+
+
+div.footer-links {
+  width:100%;
+  margin: auto;
+  color: #ffffff00;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  //size of the footers bar
+  i {
+    font-size: 42px;
+    padding: 8px;
+  }
+  //size of the pics
+}
+
+.content {
+  min-height: calc(100vh - 50px)
+}
+// need some help to put those in boxes
+//increase the size of the pictures
+//put those at the end of the page
+//
+
