@@ -7,10 +7,11 @@
       <div id = "buttons"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
       <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %></div>
       <div class="row justify-content-center align-items-center">
-        <div class="col-md-6", id="search-box">
-          <form class="search-form p-3">
+        <div class="col-md-6">
+          <form action="/banks" method="get"class="search-form p-3">
             <div class="form-group">
-              <input type="text" class="form-control" id="user_address" placeholder="Select Location">
+              <input type="text" name="query" class="form-control" id="location" placeholder="Select Location">
+              <button type="submit" class="btn btn-primary">Search</button>
             </div>
           </form>
         </div>

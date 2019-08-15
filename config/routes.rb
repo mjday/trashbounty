@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   get "dashboard", to: "users#dashboard", as: :users_dashboard
-
+  get "help", to: "pages#help", as: :help
 
 end

@@ -2,7 +2,11 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
-    @banks = Bank.all
+    if params[:query].present?
+      @banks = Bank.where("address ILIKE ?", "%#{params[:query]}%")
+    else
+      @banks = Bank.all
+    end
   end
 
   def show
@@ -10,6 +14,7 @@ class BanksController < ApplicationController
 
   def new
     @bank = Bank.new
+    @recyclables = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
   end
 
   def create
@@ -42,7 +47,7 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :address)
+    params.require(:bank).permit(:name, :address, :phone_number, :website, :country, :materials_accepted, :products_accepted)
   end
 
 end
