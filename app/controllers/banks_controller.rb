@@ -5,18 +5,14 @@ class BanksController < ApplicationController
     @center = ''
     @banks = Bank.geocoded
     if params[:query].present?
-      @banks = @banks.near(params[:query], 2000)
+      @banks = @banks.near(params[:query], 500)
     end
-    if @banks.empty?
-      result = Geocoder.search(params[:query])
-      @center = result.first.data["geometry"]['location']
-    end
-
     @markers = @banks.map do |bank|
       {
         lat: bank.latitude,
         lng: bank.longitude,
-        infowindow: render_to_string(partial: "map_info_window", locals: { bank: bank })
+        infoWindow: render_to_string(partial: "map_info_window", locals: { bank: bank }),
+        image_url: helpers.asset_url('trashbounty-logo.png')
       }
     end
     # i

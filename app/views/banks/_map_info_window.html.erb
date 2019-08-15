@@ -1,3 +1,6 @@
 <div class="info-window">
-  <%= bank.name %>
+
+    <p><%= bank.name %></p>
+    <p><%= bank.materials_accepted %></p>
+    <p><%= link_to "See more details", bank_path(bank) %></p>
 </div>
