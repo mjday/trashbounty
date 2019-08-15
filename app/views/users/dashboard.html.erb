@@ -1,12 +1,71 @@
-<h2>dashboard</h2>
+<!-- Users will have different Dashboard views -->
+
+<!-- renders Collector Users Dashboard  -->
+<% if @user.business == false %>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <!-- <h2>Hello <%#= @user.username %></h2> -->
+        <!-- <p>Business account? <%#= @user.business %></p> -->
+
+        <p class="text-center">Total Amount Earned</p>
+        <p>IDR: </p>
+        <p>BTC: </p>
+      </div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">Total Amount Collected</p>
+        <p>Kg: </p>
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">View Collection History</p>
+        <p class="text-left">link to needed..</p>
+      </div>
+
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning"%>
+    </div>
+  </div> <!-- Collector Dashboard Container -->
+
+<% else %>
+  <!-- renders Business (Recycle Bank) Users Dashboard  -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">View My Recycle Bank</p>
+        <p>(show page of recycle bank if user owns this bank, show the edit/destroy button) </p>
+      </div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">View Transaction History</p>
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">List a Recycling Center</p>
+        <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
+      </div>
+
+      <div class="col">
+        <!-- <img src="" alt=""> -->
+        <p class="text-center">See my Reviews</p>
+      </div>
+
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+    </div>
+  </div> <!-- Business (Recycle Bank) Dashboard Container -->
+<% end %>
 
 
 
 
 
-
-
-<%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
-
-
-<%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
