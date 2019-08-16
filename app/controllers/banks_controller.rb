@@ -20,6 +20,8 @@ class BanksController < ApplicationController
   end
 
   def show
+    @user = current_user
+    # code needed to show lat and lng
   end
 
   def new
