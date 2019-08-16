@@ -1,63 +1,88 @@
 <!-- Users will have different Dashboard views -->
 
 <!-- renders Collector Users Dashboard  -->
+
+
 <% if @user.business == false %>
+<div class="banner">
+  <p class= "text-center"> Welcome <%= @user.username.capitalize %> !</br>
+  <!-- if no username=>error cause capitalizing a nill class, =>changed in sessions new username required  -->
+   <%= @user.email %> </p>
+  <p class= "text-center"> Ranking</p>
+  </div>
+<hr>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <!-- <img src="" alt=""> -->
-        <p class="text-center">Total Amount Earned</p>
+    <div class="row row-background-user">
+      <div class="col col-money-user">
+        <p class="text-center", style="text-decoration: underline";>Total Amount Earned</p>
         <p>IDR: </p>
-        <p>BTC: </p>
+        <p>BTC: <i class="fab fa-bitcoin"></i></p>
       </div>
 
-      <div class="col">
-        <!-- <img src="" alt=""> -->
-        <p class="text-center">Total Amount Collected</p>
-        <p>Kg: </p>
+      <div class="col col-waste-user">
+        <p class="text-center", style="text-decoration: underline;">Total Amount Collected</p>
+        <p>Kg: <i class="fas fa-trash-alt"></i></p>
       </div>
 
       <div class="w-100"></div>
 
-      <div class="col">
-        <!-- <img src="" alt=""> -->
-        <p class="text-center">View Collection History</p>
-        <p class="text-left">link to needed..</p>
+      <div class="col col-history-user">
+        <p class="text-center", style="text-decoration: underline;">View Collection History</p>
+        <%= link_to users_dashboard_path, class: 'mr-3' do %>
+        <!--change the link-->
+      <p class="text-left">link to needed..</p>
+    <% end %>
+       <%= link_to users_dashboard_path, class: 'mr-3' do %>
+        <!--change the link-->
+      <p class="text-left">View All</p>
+    <% end %>
       </div>
 
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning"%>
     </div>
   </div> <!-- Collector Dashboard Container -->
+  <hr>
+  <div class= "banner banner-payment">
+    <h3 class="text-left", style="text-decoration: underline;">To Receive Payments </h3>
+      <i class="text-left">Please create a <a href="https://wallet.bitcoin.com/">Bitcoin</a> wallet if you do not have one
+      <div class="text-left">My Receiving Bitcoin Address:
+        <i class="fab fa-bitcoin"></i>
+      </div>
+  </div>
 
 <% else %>
   <!-- renders Business (Recycle Bank) Users Dashboard  -->
+  <div class="banner">
+  <p class= "text-center"> Welcome <%= @user.username.capitalize %> ! </br>
+   <%= @user.email %> </p>
+  <p class= "text-center"> rating of the bank </p>
+  </div>
+<hr>
   <div class="container">
     <div class="row">
       <div class="col">
         <!-- <img src="" alt=""> -->
-        <p class="text-center">View My Recycle Bank</p>
+        <p class="text-center", style="text-decoration: underline";>View My Recycle Bank</p>
         <p>(show page of recycle bank if user owns this bank, show the edit/destroy button) </p>
       </div>
 
       <div class="col">
         <!-- <img src="" alt=""> -->
-        <p class="text-center">View Transaction History</p>
+        <p class="text-center", style="text-decoration: underline";>View Transaction History</p>
       </div>
 
       <div class="w-100"></div>
 
       <div class="col">
         <!-- <img src="" alt=""> -->
-        <p class="text-center">List a Recycling Center</p>
-        <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
+         <%= link_to new_bank_path, class: 'mr-6' do %>
+      <p class="text-center", style="text-decoration: underline";>Click here to list a recycling bank!</p>
+    <% end %>
       </div>
 
-      <div class="col">
+     <div class="col">
         <!-- <img src="" alt=""> -->
-        <p class="text-center">See my Reviews</p>
-      </div>
 
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+      </div>
     </div>
   </div> <!-- Business (Recycle Bank) Dashboard Container -->
 <% end %>
