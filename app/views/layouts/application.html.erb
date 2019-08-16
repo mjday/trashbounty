@@ -24,9 +24,7 @@
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
-    <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
     <%= javascript_pack_tag 'application' %>
-    <%#= javascript_pack_tag "map" %>
 
       <% unless controller.controller_name == "pages" && controller.action_name == "home" ||
       controller.controller_name == "registrations" && controller.action_name == "new" ||

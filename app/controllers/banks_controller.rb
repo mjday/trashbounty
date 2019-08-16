@@ -2,10 +2,12 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
-    @center = ''
     @banks = Bank.geocoded
     if params[:query].present?
       @banks = @banks.near(params[:query], 500)
+    else
+      params[:query].empty?
+      redirect_to root_path
     end
     @markers = @banks.map do |bank|
       {
@@ -15,11 +17,6 @@ class BanksController < ApplicationController
         image_url: helpers.asset_url('trashbounty-logo.png')
       }
     end
-    # i
-    #   @banks = Bank.where("address ILIKE ?", "%#{params[:query]}%")
-    # else
-    #   @banks = Bank.all
-    # end
   end
 
   def show
