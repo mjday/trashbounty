@@ -21,7 +21,9 @@ class BanksController < ApplicationController
 
   def show
     @user = current_user
-    # code needed to show lat and lng
+    @bank = Bank.find(params[:id])
+    # raise
+    @marker = { lat: @bank.latitude, lng: @bank.longitude }
   end
 
   def new
