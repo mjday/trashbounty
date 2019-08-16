@@ -6,4 +6,8 @@ class Bank < ApplicationRecord
   has_many :collections
   has_many :reviews, through: :collections
   has_many :recyclables, through: :banks_recyclables
+
+  validates :name, :address, :phone_number, :website, presence: true
+  validates :materials_accepted, :products_accepted, presence: true
+  # validates :materials_accepted, presence: true, inclusion: { in: ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"] }
 end
