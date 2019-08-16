@@ -11,7 +11,7 @@ require 'json'
   )
 end
 
-filepath = File.join(Rails.root, 'db', 'seeds', 'filepath.json')
+filepath = File.join(Rails.root, 'seeds.json')
 serialized_banks = File.read(filepath)
 
 banks = JSON.parse(serialized_banks)
