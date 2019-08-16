@@ -4,8 +4,23 @@
       <h1>Add the details of your recycling bank</h1>
 
       <%= simple_form_for @bank do |f| %>
-        <%= f.input :name, placeholder: "Business name" %>
+        <%= f.input :name, label: "Recycle Bank Name" %>
         <%= f.input :address %>
+
+        <!-- unable to recognize country currently -->
+        <!-- <%#= f.input :country %> -->
+        <%= f.input :phone_number %>
+        <%= f.input :website %>
+        <%= f.input :materials_accepted %>
+
+        <!-- @recyclables is being passed in from Banks controller, but we dont want that -->
+        <!-- f.association instead? -->
+        <%#= f.association :materials_accepted, as: :check_boxes %>
+
+        <!-- this breaks the code, doesn't allow user to submit -->
+        <%#= f.input :materials_accepted, as: :check_boxes, wrapper: :vertical_collection_inline, include_hidden: false, collection: @recyclables %>
+
+        <%= f.input :products_accepted %>
         <%= f.submit "Add Listing", class: "btn btn-primary" %>
         <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
       <% end %>
@@ -13,5 +28,3 @@
     </div>
   </div>
 </div>
-
-

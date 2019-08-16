@@ -1,4 +1,4 @@
-<!-- Users will have different Dashboard views -->
+  <!-- Users will have different Dashboard views -->
 
 <!-- renders Collector Users Dashboard  -->
 
@@ -68,6 +68,10 @@
       <div class="col">
         <!-- <img src="" alt=""> -->
         <p class="text-center", style="text-decoration: underline";>View Transaction History</p>
+        <%= link_to new_bank_path, class: 'mr-6' do %>
+      <p class="text-center", style="text-decoration: underline";>Click here to see your transaction history!</p>
+    <% end %>
+      </div>
       </div>
 
       <div class="w-100"></div>
