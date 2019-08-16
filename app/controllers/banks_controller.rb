@@ -6,8 +6,8 @@ class BanksController < ApplicationController
     if params[:query].present?
       @banks = @banks.near(params[:query], 500)
     else
-      params[:query].empty?
-      redirect_to root_path
+      # params[:query].empty?
+      # redirect_to root_path
     end
     @markers = @banks.map do |bank|
       {
