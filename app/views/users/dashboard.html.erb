@@ -5,7 +5,7 @@
 
 <% if @user.business == false %>
 <div class="banner">
-  <p class= "text-center"> Welcome <%= @user.username.capitalize %> !</br>
+  <p class= "text-center"> Welcome <%= @user.username%> !</br>
   <!-- if no username=>error cause capitalizing a nill class, =>changed in sessions new username required  -->
    <%= @user.email %> </p>
   <p class= "text-center"> Ranking</p>
@@ -52,7 +52,7 @@
 <% else %>
   <!-- renders Business (Recycle Bank) Users Dashboard  -->
   <div class="banner">
-  <p class= "text-center"> Welcome <%= @user.username.capitalize %> ! </br>
+  <p class= "text-center"> Welcome <%= @user.username%> ! </br>
    <%= @user.email %> </p>
   <p class= "text-center"> rating of the bank </p>
   </div>
@@ -80,8 +80,12 @@
       </div>
 
      <div class="col">
+        <% @collections.each do |collection| %>
         <!-- <img src="" alt=""> -->
-
+          <%= link_to collection_reviews_path(collection.id), class: 'mr-6' do %>
+            <p class="text-center", style="text-decoration: underline";>Click here to see your reviews!</p>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div> <!-- Business (Recycle Bank) Dashboard Container -->
