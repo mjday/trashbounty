@@ -34,4 +34,3 @@ if (mapElement) {
   //   infowindow.open(map, markers);
   // }
 }
-
