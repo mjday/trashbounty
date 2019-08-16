@@ -2,8 +2,8 @@
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
     <% if Rails.env.development? %>
       <% qrcode = RQRCode::QRCode.new("https://38c9a5e1.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
-    <% else %> 38c9a5e1.ngrok.io
-      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/" + @verification.id.to_s) %>
+    <% else %>
+      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
 
     <% svg = qrcode.as_svg(
