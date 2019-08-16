@@ -1,3 +1,6 @@
-<h1>Banks#show</h1>
-<p>Find me in app/views/banks/show.html.erb</p>
+<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"style="height: calc(50vh - 50px); width: 100vw"></div>
 
+<div class="container">
+  <h1>Banks#show</h1>
+  <p>Show the details of this Recycle Bank</p>
+</div>
