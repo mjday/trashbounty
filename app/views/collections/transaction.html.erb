@@ -1,0 +1,51 @@
+<h1>Pseudo Form</h1>
+
+<form action="/collections/new" method="get">
+
+  <h1>Transaction</h1>
+
+  <fieldset>
+
+    <legend><span class="number"></span>Transaction: <%= Time.now %></legend>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" value="<%= Date.today %>" >
+
+      <label for="total_kg">Total Kg Collected:</label>
+      <input type="number" id="total_kg" name="total_kg">
+
+      <label for="total_amount">Total Amount:</label>
+      <input type="number" id="total_amount" name="total_amount">
+
+      <label for="payment_type">Payment Type:</label>
+      <select id="text" name="payment_type">
+        <optgroup label="Web">
+          <option value="bitcoin">Bitcoin</option>
+          <option value="cash">Cash</option>
+        </optgroup>
+      </select>
+  </fieldset>
+
+  <fieldset>
+  <button type="submit">Submit</button>
+
+</form>
+
+<% if Rails.env.development? %>
+  <% qrcode = RQRCode::QRCode.new("https://collections/new") %>
+<% else %>
+  <% qrcode = RQRCode::QRCode.new("https://HEROKU_LINK/collections/new") %>
+<% end %>
+
+<% svg = qrcode.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6
+    ) %>
+<% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %>
+    <%= image_tag "qrcode", alt: "alttext" %>
+<!-- <img src="<%#= svg %>" /> -->
+
+
+
