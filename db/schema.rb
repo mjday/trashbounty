@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 2019_08_16_061705) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
     t.string "phone_number"
     t.string "website"
     t.string "country"
     t.string "materials_accepted"
     t.string "products_accepted"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 

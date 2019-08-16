@@ -1,14 +1,24 @@
-      var map;
-      function initMap() {
-        const indexMap = document.getElementById('map')
-        if (indexMap) {
-          map = new google.maps.Map(indexMap, {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-          });
+function initMap() {
+  const indexMap = document.getElementById('map')
+  if (indexMap) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    const lat = position.coords.latitude
+    const lng = position.coords.longitude;
+    const map = new google.maps.Map(indexMap, {
+          center: new google.maps.LatLng(lat,lng),
+          zoom: 3
+        });
 
-        }
-      }
+    const markers = JSON.parse(indexMap.dataset.markers);
+      markers.forEach((marker) => {
 
+            new google.maps.Marker({
+              position: new google.maps.LatLng(marker.lat, marker.lng),
+              map: map
+            });
+          })
+      });
+    }
+  }
 
 export { initMap };

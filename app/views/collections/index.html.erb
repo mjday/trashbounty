@@ -1,3 +1,24 @@
+
 <h1>Collections#index</h1>
 <p>Find me in app/views/collections/index.html.erb</p>
 <%= link_to 'New Transaction', transaction_path %>
+
+<!-- this collections view should be available only to Collectors -->
+<!-- routes? -->
+<h3>This is a history of all my Collections</h3>
+
+<% @collections.where(user_id: current_user).each do |collection| %>
+  <div class="container">
+    <ul>
+      <li>Collection Bank Name: <%= collection.bank.name %></li>
+      <li>Bank Address: <%= collection.bank.address %></li>
+
+      <li>Collection Date: <%= collection.date %></li>
+      <li>Total Kg: <%= collection.total_kg %></li>
+      <li>Total Amount: <%= collection.total_amount %></li>
+      <li>Payment Type: <%= collection.payment_type %></li>
+    </ul>
+    <hr>
+  </div>
+<% end %>
+
