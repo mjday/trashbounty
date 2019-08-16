@@ -1,0 +1,40 @@
+<div class="container">
+  <div id="business_view" class="<%= 'none' unless current_user.business %>">
+    <% if Rails.env.development? %>
+      <% qrcode = RQRCode::QRCode.new("https://38c9a5e1.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+    <% else %> 38c9a5e1.ngrok.io
+      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/" + @verification.id.to_s) %>
+    <% end %>
+
+    <% svg = qrcode.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6
+    ) %>
+
+    <% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %>
+    <%= image_tag "qrcode.svg", alt: "alttext" %>
+  </div>
+
+  <div id="collector_view">
+    <%= simple_form_for @collection do |f| %>
+      <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
+      <%= f.hidden_field :date, value: @verification.date %>
+
+      <%= f.input :total_kg, disabled: true, input_html: { value: @verification.total_kg } %>
+      <%= f.hidden_field :total_kg, value: @verification.total_kg %>
+
+      <%= f.input :total_amount, disabled: true, input_html: { value: @verification.total_amount } %>
+      <%= f.hidden_field :total_amount, value: @verification.total_amount %>
+
+      <%= f.input :payment_type, disabled: true, input_html: { value: @verification.payment_type } %>
+      <%= f.hidden_field :payment_type, value: @verification.payment_type %>
+
+      <%= f.hidden_field :bank_id, value: @bank.id.to_i %>
+
+      <%= f.submit 'Accept', class: 'btn btn-primary' %>
+      <%= link_to 'Reject', users_dashboard_path %>
+    <% end %>
+  </div>
+</div>

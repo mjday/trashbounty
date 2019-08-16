@@ -18,6 +18,12 @@ class CollectionsController < ApplicationController
   end
 
   def create
+    # raise
+    @collection = Collection.new(collection_params)
+    @bank = Bank.find(params[:collection][:bank_id])
+    @collection.bank = @bank
+    @collection.save
+    redirect_to users_dashboard_path
     # @collection = Collection.new(params)
     # render plain: params.to_json
 
@@ -47,7 +53,7 @@ class CollectionsController < ApplicationController
   #   @collection = Collection.find(params[:id])
   # end
 
-  # def collection_params
-  #   params.require(:collection).permit(:date, :total_kg, :total_amount, :payment_type)
-  # end
+  def collection_params
+    params.require(:collection).permit(:date, :total_kg, :total_amount, :payment_type, :bank_id)
+  end
 end
