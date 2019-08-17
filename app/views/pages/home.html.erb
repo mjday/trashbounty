@@ -1,22 +1,50 @@
-<div class="banner-frontpage">
-  <div class="banner-content text-center">
-    <h1>Trash Bounty!</h1>
-    <p>Make the world a better place !</p>
+<div class="banner">
 
-    <div class="container">
-      <div id = "buttons"> <%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %></div>
-      <div class="row justify-content-center align-items-center">
-        <div class="col-md-6" id="search-box">
-          <form action="/banks" method="get"class="search-form p-3">
-            <div class="form-group">
-              <input type="text" name="query" class="form-control" id="location" placeholder="Search a Location">
-              <button type="submit" class="fas fa-search btn btn-primary"></button>
-            </div>
-          </form>
+<div class="container-fluid" style="height: 100vh;">
+    <div class="ml-2 pt-3 row justify-content-start">
+        <div class="col-xs-2"><img src="<%= asset_path('trashbounty-logo.png') %>" alt="trashbounty logo" height="40vh" width="40vw">
         </div>
-      </div> <!-- row -->
-    </div> <!-- container -->
+    </div>
+      <div class="ml-2 row justify-content-start">
+        <div class="col-xs-6"><h1>Trashbounty</h1>
+        </div>
+      </div>
+        <div class="ml-3 row justify-content-start">
+          <div class="col-xs-6"><p>Turning waste into a commodity</p>
+          </div>
+        </div>
 
+
+    <div class="mt-4 row center-rows justify-content-center align-items-end">
+        <form action="/banks" method="get" class="form-inline col-xs-8">
+            <input type="text" name="query" id="location" placeholder="Search a Location" class="form-control">
+        <button type="submit" class="fas fa-search btn btn-primary"></button>
+        </form>
+
+   <!--          <div class="col-xs-6">
+                <form action="/banks" method="get"class="form-inline">
+                <input type="text" name="query" class="form-control" id="location" placeholder="Search a Location">
+                <input type="submit" value="button" class="btn btn-primary">
+              <div class="col-xs-1"><button type="submit" class="fas fa-search btn btn-primary"></button></div>
+ -->          <!-- </form>
+            </div>  -->
+
+
+<!--       <div class="col-xs-6">search bar</div>
+ -->    </div>
+
+
+
+        <div class="center-rows row justify-content-center align-items-end">
+          <div id = "buttons" class="col-xs-6"><%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
+
+          </div>
+        </div>
+          <div class="row center-rows justify-content-center">
+            <div class="col-xs-6"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+
+            </div>
+          </div>
   </div>
+
 </div>
