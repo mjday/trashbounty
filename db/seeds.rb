@@ -7,7 +7,7 @@ require 'json'
     password: "123456",
     username: Faker::Name.first_name,
     phone_number: Faker::PhoneNumber.phone_number,
-    bitcoin_address: "fhdsbhivbiqwb38434b"
+    bitcoin_address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
   )
 end
 
@@ -32,7 +32,7 @@ end
 types = ["Bitcoin", "Cash"]
 10.times do |i|
   collection = Collection.new(
-    date: Date.today,
+    date: Date.today + rand(1..5),
     total_kg: rand(1..50),
     payment_type: types.sample,
     user: User.find(rand(User.first.id..User.count)),
