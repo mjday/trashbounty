@@ -9,6 +9,12 @@
   <p>Materials Accepted: <%= @bank.materials_accepted %></p>
   <p>Products Accepted: <%= @bank.products_accepted %></p>
 
+<h3>Recent reviews</h3>
+  <% @reviews.each do |review| %>
+  <p><%= review.rating %> <i class="fas fa-star"></i>  |  Comment: <%= review.comment %>  |  by:  </p>
+  <% end %>
+  <!-- display the username of the reviewer next to the by: -->
+
   <!-- renders Business (Recycle Bank) Users edit button  -->
   <!-- show 'edit' button that updates the bank instance -->
   <% if @user.business == true %>
