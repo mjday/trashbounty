@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'serviceworker-rails'
 gem 'geocoder'
 gem 'rqrcode'
+gem 'inline_svg'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

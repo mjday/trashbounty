@@ -1,9 +1,9 @@
 <div class="container">
-  <div id="business_view" class="<%= 'none' unless current_user.business %>">
+  <div id="business_view" class="<%= 'none' if current_user.business %>">
     <% if Rails.env.development? %>
       <% qrcode = RQRCode::QRCode.new("https://38c9a5e1.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
-    <% else %> 38c9a5e1.ngrok.io
-      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/" + @verification.id.to_s) %>
+    <% else %>
+      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
 
     <% svg = qrcode.as_svg(
@@ -15,9 +15,11 @@
 
     <% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %>
     <%= image_tag "qrcode.svg", alt: "alttext" %>
+
+
   </div>
 
-  <div id="collector_view">
+  <div id="collector_view" class="<%= 'none' unless current_user.business %>">
     <%= simple_form_for @collection do |f| %>
       <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
       <%= f.hidden_field :date, value: @verification.date %>
