@@ -1,29 +1,34 @@
-dir.banner-footer{
-   height: 55px;
+div.banner-footer{
+  height: 8vh;
   position: sticky;
   padding: 0px 0px 0px 0px;
   bottom: 0;
+  a {
+    color: #394045;
+  }
 }
 //make the banner at the bottom of the page -50px and made it sticky
-
+a.mr-3 {
+    color: #394045;
+}
 
 
 div.footer-links {
   width:100%;
   margin: auto;
-  color: #ffffff00;
-  display: flex;
-  justify-content:center;
-  align-items:center;
+  color: #394045;
+  // display: flex;
+  // justify-content:center;
+  // align-items:center;
   //size of the footers bar
   i {
     font-size: 42px;
-    padding: 8px;
+    // padding: 8px;
   }
   //size of the pics
 }
 
 .content {
-  min-height: calc(100vh - 50px)
+  min-height: calc(100vh - 8vh)
 }
 
