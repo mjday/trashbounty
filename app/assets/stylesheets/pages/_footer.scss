@@ -1,6 +1,6 @@
 div.banner-footer{
-  height: 50px;
-  // position: sticky;
+  height: 8vh;
+  position: sticky;
   padding: 0px 0px 0px 0px;
   bottom: 0;
   a {
@@ -23,12 +23,12 @@ div.footer-links {
   //size of the footers bar
   i {
     font-size: 42px;
-    padding: 8px;
+    // padding: 8px;
   }
   //size of the pics
 }
 
 .content {
-  min-height: calc(100vh - 10vh)
+  min-height: calc(100vh - 8vh)
 }
 
