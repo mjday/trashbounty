@@ -1,0 +1,6 @@
+<%= simple_form_for([ @collection, @review ]) do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :rating %>
+  <%= f.submit "Add review", class: "btn btn-primary" %>
+  <%= link_to "Return to dashboard page", users_dashboard_path, class: "btn btn-primary" %>
+<% end %>
