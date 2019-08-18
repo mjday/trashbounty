@@ -1,0 +1,24 @@
+.banner {
+  // padding: 150px 0;
+  background-image:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.5)), image-url("bottle-blur.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.banner h1 {
+  margin: 0;
+  color: #394045;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 6vw;
+  font-weight: bold;
+  opacity: 1.0;
+}
+
+.banner p {
+  font-size: 2vw;
+  color: #394045;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
