@@ -18,8 +18,9 @@
 
 
   </div>
-
+  
   <div id="collector_view" class="<%= 'none' unless current_user.business %>">
+
     <%= simple_form_for @collection do |f| %>
       <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
       <%= f.hidden_field :date, value: @verification.date %>
