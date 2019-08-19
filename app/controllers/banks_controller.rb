@@ -22,13 +22,17 @@ class BanksController < ApplicationController
   def show
     @user = current_user
     @bank = Bank.find(params[:id])
+    @reviews = @bank.reviews
+
+    @bank.plastics
     # raise
+
     @marker = { lat: @bank.latitude, lng: @bank.longitude }
   end
 
   def new
     @bank = Bank.new
-    @recyclables = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
+    # @recyclables = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
   end
 
   def create
@@ -55,6 +59,14 @@ class BanksController < ApplicationController
   end
 
   private
+
+  # use a hash - key/value pair
+  # @materials_accepted = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
+  # def set_materials_accepted_rate([])
+  #   # if the collector delivers a few different types of material
+  #   if
+  #     # take the rate per kg for ABS
+  # end
 
   def set_bank
     @bank = Bank.find(params[:id])
