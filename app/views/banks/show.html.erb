@@ -7,25 +7,22 @@
 <div id="map" style="height: calc(50vh - 50px); width: 100vw" data-marker="<%= @marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <div class="container">
-  <h3><%= @bank.name %></h3>
+  <h3><u><%= @bank.name %></u></h3>
   <p>Address: <%= @bank.address %></p>
-  <p>Phone Number <%= @bank.phone_number %></p>
+  <p>Phone Number: <a href="tel:"><%= @bank.phone_number %></a></p>
   <p>Materials Accepted: <%= @bank.materials_accepted %></p>
   <p>Products Accepted: <%= @bank.products_accepted %></p>
 
-<h3>Recent reviews</h3>
+  <h3><u>Recent reviews</u></h3>
   <% @reviews.each do |review| %>
-  <p><%= review.rating %> <i class="fas fa-star"></i>  |  Comment: <%= review.comment %>  |  by: <%= @bank.user.username  %></p>
+  <p><%= review.rating %>  <i class="fas fa-star"></i>  |  Comment: <%= review.comment %>  |  by: <%= @bank.user.username  %></p>
   <% end %>
   <!-- display the username of the reviewer next to the by: -->
 
   <!-- renders Business (Recycle Bank) Users edit button  -->
   <!-- show 'edit' button that updates the bank instance -->
-  <% if @user.business == true %>
+  <% if user_signed_in? && @bank.user == current_user %>
     <%= link_to "Edit", edit_bank_path(@bank) %>
-
-  <% else %>
-
   <% end %>
   <!-- renders Collector Users Dashboard  -->
 <%= link_to "Search again", banks_path, class: "btn btn-lg btn-primary"  %>

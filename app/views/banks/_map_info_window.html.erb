@@ -1,11 +1,18 @@
 <div class="info-window">
+  <div class="row content-start">
+    <h4><%= bank.name %></h4>
+  </div>
 
-    <p><%= bank.name %></p>
-    <p><%= bank.materials_accepted %></p>
+  <div class="row content-start">
+    <p> Type of materials : <%= bank.materials_accepted %></p>
+  </div>
     <!-- avg rating of the bank -->
     <!-- <p><%#= bank.review.rating %></p> -->
 
     <!-- the rate the bank pays -->
+    <!--<div class="row content-start"> -->
     <!-- <p><%#= bank.materials_accepted.rate_per_kg %></p> -->
+    <div class="row content-start">
     <p><%= link_to "See more details", bank_path(bank) %></p>
+    </div>
 </div>
