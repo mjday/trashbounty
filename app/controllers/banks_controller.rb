@@ -24,6 +24,7 @@ class BanksController < ApplicationController
     @bank = Bank.find(params[:id])
     @reviews = @bank.reviews
     @plastics = @bank.plastics
+    raise
     @bank.plastics
     # raise
 

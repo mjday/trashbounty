@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'json'
 
+puts "Starting....."
+
 10.times do |i|
   user_collector = User.create!(
     email: Faker::Internet.email,
@@ -43,14 +45,16 @@ banks.first(10).each do |bank|
     user: User.find(rand(11..20)),
   )
   # create 1..4 materials (plastic_types)
-  4.times do
-    Plastic.create!(
-      name: plastic_type[i],
-      price_per_kg: rates.sample,
-      bank: bk
-    )
-  i += 1
-  end
+  # 4.times do
+    plastic_type.each do |p|
+      Plastic.create!(
+        name: p,
+        price_per_kg: rates.sample,
+        bank: bk
+      )
+    end
+  # i += 1
+  # end
 end
 
 types = ["Bitcoin", "Cash"]
@@ -75,3 +79,4 @@ comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better
     collection: Collection.find(rand(1..10))
   )
 end
+puts "Database ready"
