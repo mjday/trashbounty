@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_100018) do
+ActiveRecord::Schema.define(version: 2019_08_19_034750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 2019_08_18_100018) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "plastics", force: :cascade do |t|
+    t.string "name"
+    t.float "price_per_kg"
+    t.bigint "bank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_plastics_on_bank_id"
+  end
+
   create_table "recyclables", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_100018) do
   add_foreign_key "collection_recyclables", "recyclables"
   add_foreign_key "collections", "banks"
   add_foreign_key "collections", "users"
+  add_foreign_key "plastics", "banks"
   add_foreign_key "reviews", "collections"
   add_foreign_key "verifications", "banks"
 end

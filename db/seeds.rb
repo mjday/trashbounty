@@ -39,28 +39,17 @@ banks.first(10).each do |bank|
     phone_number: bank["phone_number"],
     website: bank["website"],
     country: bank["country"],
-    # materials_accepted: bank["materials_accepted"],
     products_accepted: bank["products_accepted"],
     user: User.find(rand(11..20)),
-    rate_per_kg: rates.sample
   )
   # create 1..4 materials (plastic_types)
   (1..4).to_a.sample.times do
     Plastic.create!(
       name: plastic_type.sample,
-      rate_per_kg: rates.sample,
+      price_per_kg: rates.sample,
       bank: bk
     )
   end
-end
-
-# MATERIALS
-10.times do |i|
-  materials = Material.new(
-    name: materials_accepted.sample,
-    price: price_per_kg,
-    bank: Bank.find(rand(Bank.first.id..Bank.count))
-    )
 end
 
 types = ["Bitcoin", "Cash"]
