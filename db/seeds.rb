@@ -27,9 +27,10 @@ serialized_banks = File.read(filepath)
 
 banks = JSON.parse(serialized_banks)
 
-rates = [0.35, 0.3, 0.25, 0.2, 0.15]
-materials_accepted = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA",
-  "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
+rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
+# materials_accepted = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA",
+#   "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
+plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
 
 banks.first(10).each do |bank|
   bk = Bank.create!(
@@ -43,10 +44,11 @@ banks.first(10).each do |bank|
     user: User.find(rand(11..20)),
     rate_per_kg: rates.sample
   )
-  (4..10).to_a.sample.times do
-    Material.create!(
-      name: materials_accepted.sample,
-      price: rates.sample,
+  # create 1..4 materials (plastic_types)
+  (1..4).to_a.sample.times do
+    Plastic.create!(
+      name: plastic_type.sample,
+      rate_per_kg: rates.sample,
       bank: bk
     )
   end
