@@ -67,7 +67,7 @@ types = ["Bitcoin", "Cash"]
 end
 
 ratings = [1, 2, 3, 4, 5]
-comments = ["Great", "Good", "Okay", "Poor", "Terrible"]
+comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]
 10.times do |i|
   review = Review.create!(
     rating: ratings.sample,
