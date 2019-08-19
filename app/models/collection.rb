@@ -3,4 +3,5 @@ class Collection < ApplicationRecord
   belongs_to :bank
   has_one :review
   has_many :recycables, through: :collection_recyclables
+  has_many :collected_plastics, through: :verifications
 end

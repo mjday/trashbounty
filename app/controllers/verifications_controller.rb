@@ -1,11 +1,14 @@
 class VerificationsController < ApplicationController
   def show
     @bank = Bank.find(params[:bank_id])
+    @bank.plastics
+    raise
     @verification = Verification.find(params[:id])
-    @collection = Collection.new(date: @verification.date,
-     total_amount: @verification.total_amount,
-     total_kg: @verification.total_kg,
-     payment_type: @verification.payment_type)
+    @collection = Collection.new(
+      date: @verification.date,
+      total_amount: @verification.total_amount,
+      total_kg: @verification.total_kg,
+      payment_type: @verification.payment_type)
   end
 
   def new
