@@ -1,9 +1,19 @@
 <%= simple_form_for [@bank, @verification] do |f| %>
-
   <%= f.input :date %>
-  <%= f.input :total_kg %>
-  <%= f.input :total_amount %>
+
+  <% @bank.plastics.each do |plastic| %>
+    <%= f.fields_for :collected_plastics do |cp| %>
+      <%= cp.input :plastic, readonly: true, input_html: { value: plastic.name } %>
+      <%= cp.input :kg_collected %>
+    <% end %>
+  <% end %>
+
   <%= f.input :payment_type %>
+
+
+
+  <%#= f.input :plastic, collection: @bank.plastics %>
+
   <%= f.button :submit, class: "btn btn-primary", data: { toggle: "modal", target: "#exampleModal" } %>
 <% end %>
 
