@@ -1,30 +1,24 @@
-<%= simple_form_for [@bank, @verification] do |f| %>
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 mt-3">
+      <%= simple_form_for [@bank, @verification] do |f| %>
+       <%= f.input :date %>
 
-  <%= f.input :date %>
-  <%= f.input :total_kg %>
-  <%= f.input :total_amount %>
-  <%= f.input :payment_type %>
-  <%= f.button :submit, class: "btn btn-primary", data: { toggle: "modal", target: "#exampleModal" } %>
-<% end %>
+        <% @bank.plastics.each do |plastic| %>
+          <%= f.fields_for :collected_plastics do |cp| %>
+            <%= cp.input :plastic, readonly: true, input_html: { value: plastic.name } %>
+            <%= cp.input :kg_collected %>
+            <hr>
+          <% end %>
+        <% end %>
 
+        <%= f.input :payment_type, collection: [ "Cash", "Bitcoin"] %>
 
+        <%#= f.input :plastic, collection: @bank.plastics %>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+        <%= f.button :submit, class: "btn btn-primary", data: { toggle: "modal", target: "#exampleModal" } %>
+      <% end %>
+
+     </div>
   </div>
 </div>

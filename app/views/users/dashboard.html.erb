@@ -81,16 +81,12 @@
                   </thead>
                   <tbody>
                     <% counter = 0 %>
-                    <%#= need to implement @collection.each here %>
-                    <!-- clicking on an individual one should take me to collection#show -->
-                    <!-- <%#= link_to counter,  %> -->
-                     <!-- for each Collector user, get all the collections -->
-
                     <% @user.collections.each do |collection| %>
                     <tr>
                       <td><%= counter + 1 %></td>
                       <td><%= collection.date %></td>
                       <td><%= collection.total_kg %></td>
+                      <!-- total amount should be the total after the correctly calculated rates -->
                       <td><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
                     </tr>
