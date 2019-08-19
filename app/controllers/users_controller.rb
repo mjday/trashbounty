@@ -16,4 +16,8 @@ class UsersController < ApplicationController
     end
     sum
   end
+
+  def camera
+    @user = current_user
+  end
 end

@@ -16,10 +16,10 @@
               <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
               <!-- Content -->
               <div>
-                <!-- Title -->
-                <h4 class="card-title font-weight-bold mb-2">Username</h4>
-                <!-- Subtitle -->
-                <!-- <p class="card-text"><i class="far fa-clock pr-2"></i>07/24/2018</p> -->
+
+                <h4 class="card-title font-weight-bold mb-2"><%= @user.username %></h4>
+                <p>User id: <%= @user.id %></p>
+
                 <p class="card-text">Rank</p>
               </div>
             </div>
@@ -30,7 +30,15 @@
             <!-- Card content -->
             <div class="card-body pb-0">
               <h4 class="card-title font-weight-bold">Some header (if needed)?</h4>
-              <p class="card-text mb-4">Some sub-header (if needed)?</p>
+
+              <!-- Camera -->
+              <p class="card-text mb-4">
+
+                <!-- <input type="file" accept="image/*" capture>
+                <input type="file" accept="image/*" capture="user">
+                <input type="file" accept="image/*" capture="environment"> -->
+
+              </p>
 
 
               <div class="d-flex justify-content-between">

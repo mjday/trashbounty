@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get "dashboard", to: "users#dashboard", as: :users_dashboard
   get "help", to: "pages#help", as: :help
   get "leaderboard", to: "pages#leaderboard", as: :leaderboard
+  get "camera", to: "users#camera", as: :users_camera
 end
