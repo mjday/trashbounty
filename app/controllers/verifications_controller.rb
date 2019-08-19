@@ -1,9 +1,10 @@
 class VerificationsController < ApplicationController
   def show
     @bank = Bank.find(params[:bank_id])
-    @bank.plastics
-    raise
     @verification = Verification.find(params[:id])
+
+    @bank.plastics
+
     @collection = Collection.new(
       date: @verification.date,
       total_amount: @verification.total_amount,
@@ -14,10 +15,14 @@ class VerificationsController < ApplicationController
   def new
     @bank = Bank.find(params[:bank_id])
     @verification = Verification.new
+
+    @bank.plastics
   end
 
   def create
     @bank = Bank.find(params[:bank_id])
+    @bank.plastics
+
     @verification = Verification.new(verification_params)
     @verification.bank = @bank
 
