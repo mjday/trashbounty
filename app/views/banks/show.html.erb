@@ -12,11 +12,26 @@
   <p>Phone Number <%= @bank.phone_number %></p>
   <p>Materials Accepted: <%= @bank.materials_accepted %></p>
   <p>Products Accepted: <%= @bank.products_accepted %></p>
+  <p>Rate: $<%= @bank.rate_per_kg %></p>
+
 
 <h3>Recent reviews</h3>
+<div class="card-product">
+<!--   add Avatar here />
+ -->  <p> <%= @bank.user.username  %></p>
+  <div class="card-product-infos">
   <% @reviews.each do |review| %>
-  <p><%= review.rating %> <i class="fas fa-star"></i>  |  Comment: <%= review.comment %>  |  by: <%= @bank.user.username  %></p>
+    <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
+    <p><strong>Comment:</strong> <%= review.comment %></p>
+    <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
+
   <% end %>
+  </div>
+</div>
+
+
+
+
   <!-- display the username of the reviewer next to the by: -->
 
   <!-- renders Business (Recycle Bank) Users edit button  -->
