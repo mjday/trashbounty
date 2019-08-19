@@ -8,6 +8,14 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+</script>
+<!-- added according to google charts instructions-->
+
   <link rel="manifest" href="/manifest.json" />
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
   <body>
