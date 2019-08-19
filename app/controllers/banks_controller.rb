@@ -23,7 +23,7 @@ class BanksController < ApplicationController
     @user = current_user
     @bank = Bank.find(params[:id])
     @reviews = @bank.reviews
-
+    @plastics = @bank.plastics
     @bank.plastics
     # raise
 
@@ -75,5 +75,7 @@ class BanksController < ApplicationController
   def bank_params
     params.require(:bank).permit(:name, :address, :phone_number, :website, :country, :materials_accepted, :products_accepted)
   end
+
+
 
 end
