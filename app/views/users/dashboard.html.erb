@@ -32,15 +32,10 @@
               <h4 class="card-title font-weight-bold">Some header (if needed)?</h4>
               <p class="card-text mb-4">Some sub-header (if needed)?</p>
 
-              <%#= @total_amount_earned %>
+
               <div class="d-flex justify-content-between">
+                  <p class="display-4 align-self-end"><%# sum += collection.total_kg %><%= @sum %></p>
 
-                <%= @sum  %>
-                <% @user.collections.each do |collection| %>
-                  <p class="display-4 align-self-end"><%# sum += collection.total_kg %></p>
-
-                  <p class="display-4 align-self-end"><%= collection.total_kg %></p>
-                <% end %>
                 <p class="align-self-end pb-2">Collected (Kg)</p>
               </div>
             </div>
@@ -86,16 +81,12 @@
                   </thead>
                   <tbody>
                     <% counter = 0 %>
-                    <%#= need to implement @collection.each here %>
-                    <!-- clicking on an individual one should take me to collection#show -->
-                    <!-- <%#= link_to counter,  %> -->
-                     <!-- for each Collector user, get all the collections -->
-
                     <% @user.collections.each do |collection| %>
                     <tr>
                       <td><%= counter + 1 %></td>
                       <td><%= collection.date %></td>
                       <td><%= collection.total_kg %></td>
+                      <!-- total amount should be the total after the correctly calculated rates -->
                       <td><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
                     </tr>

@@ -41,6 +41,7 @@
                 <td class="pb-3 pt-2">Price per KG:
                 <% @plastics.each do |plastic| %>
                   <%= plastic.name %> - $<%= plastic.price_per_kg %>
+
                   <% end %>
                 </td>
               </tr>
@@ -79,6 +80,10 @@
       </div>
     </div>
   </div> <!-- container -->
+
+
+<div class="container">
+
 
   <% if @user.business == true %>
     <%= link_to "Edit", edit_bank_path(@bank) %>

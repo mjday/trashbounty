@@ -24,7 +24,9 @@ class BanksController < ApplicationController
     @bank = Bank.find(params[:id])
     @reviews = @bank.reviews
     @plastics = @bank.plastics
+    @bank.plastics
     # raise
+
     @marker = { lat: @bank.latitude, lng: @bank.longitude }
   end
 

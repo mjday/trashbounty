@@ -31,7 +31,7 @@ rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
 # materials_accepted = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA",
 #   "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
 plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
-
+i = 0
 banks.first(10).each do |bank|
   bk = Bank.create!(
     name: bank["name"],
@@ -43,12 +43,13 @@ banks.first(10).each do |bank|
     user: User.find(rand(11..20)),
   )
   # create 1..4 materials (plastic_types)
-  (1..4).to_a.sample.times do
+  4.times do
     Plastic.create!(
-      name: plastic_type.sample,
+      name: plastic_type[i],
       price_per_kg: rates.sample,
       bank: bk
     )
+  i += 1
   end
 end
 
