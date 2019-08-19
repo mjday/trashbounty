@@ -35,9 +35,9 @@
               <%#= @total_amount_earned %>
               <div class="d-flex justify-content-between">
 
-                <% sum = 0.0  %>
+                <%= @sum  %>
                 <% @user.collections.each do |collection| %>
-                  <p class="display-4 align-self-end"><%#= sum += collection.total_kg %></p>
+                  <p class="display-4 align-self-end"><%# sum += collection.total_kg %></p>
 
                   <p class="display-4 align-self-end"><%= collection.total_kg %></p>
                 <% end %>
