@@ -15,9 +15,14 @@
               <!-- Avatar -->
               <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
               <!-- Content -->
+              <%#= simple_form_for @user do |f| %>
+                <%#= f.input :photo %>
+                <%#= f.input :photo_cache, as: :hidden %>
+                  <!-- [...] -->
+                <%# end %>
               <div>
                 <!-- Title -->
-                <h4 class="card-title font-weight-bold mb-2">Username</h4>
+                <h4 class="card-title font-weight-bold mb-2">Welcome, <%= @user.username %></h4>
                 <!-- Subtitle -->
                 <!-- <p class="card-text"><i class="far fa-clock pr-2"></i>07/24/2018</p> -->
                 <p class="card-text">Rank</p>
