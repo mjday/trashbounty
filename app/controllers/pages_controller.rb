@@ -12,11 +12,5 @@ class PagesController < ApplicationController
 
   def leaderboard
     @users = User.all
-
-    # @user = current_user
-    # @collections = Collection.where(user: @user)
-    # @banks = Bank.where(user: @user)
-    # @sum = get_total_kg
-
   end
 end

@@ -20,7 +20,10 @@
             <td>1</td>
             <td><%= user.id %></td>
             <td>@<%= user.username %></td>
+            <!-- shouldnt be taking the Collections total kg -->
             <td><%= collection.total_kg %></td>
+
+
             <% end %> <!-- end users.collections.each -->
           </tr>
           <% end %> <!-- end users.each -->
