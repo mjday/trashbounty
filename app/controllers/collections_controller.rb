@@ -44,14 +44,17 @@ class CollectionsController < ApplicationController
     #   render 'new'
     # end
     @collection.user_id = current_user.id
-    @bank = Bank.find(params[:bank_id])
+    # @bank = Bank.find(params[:bank_id])
     @collection.bank_id = @bank.id
 
-    if @collection.save
-      redirect_to users_dashboard_path
-    else
-      render 'new'
-    end
+    @collection.save
+
+    # if @collection.save
+    #   redirect_to users_dashboard_path
+    # else
+    #   render 'new'
+    # end
+
   end
 
   def transaction
