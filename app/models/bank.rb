@@ -15,6 +15,15 @@ class Bank < ApplicationRecord
 def average_rating
     rating_array = self.reviews.pluck(:rating)
     sum = rating_array.reduce(:+)
-    return sum / rating_array.count
+    sum /= rating_array.count
+    return sum.round(2)
+  end
+
+
+  def average_price
+    price_array = self.plastics.pluck(:price_per_kg)
+    sum = price_array.reduce(:+)
+    sum /= price_array.count
+    return sum.round(2)
   end
 end

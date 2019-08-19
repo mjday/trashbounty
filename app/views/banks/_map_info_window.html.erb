@@ -3,12 +3,9 @@
     <p><%= bank.name %></p>
     <p><%= bank.materials_accepted %></p>
     <% if bank.reviews.any? %>
-<p><%= bank.average_rating%></p>
+<p>Average Rating: <%= bank.average_rating%> <i class="fas fa-star"></i></p>
     <% end %>
-    <!-- avg rating of the bank -->
-    <!-- <p><%#= bank.review.rating %></p> -->
-
-    <!-- the rate the bank pays -->
-    <!-- <p><%#= bank.materials_accepted.rate_per_kg %></p> -->
+<p>Average Price per KG: $<%= bank.average_price%> <i class="fas fa-star"></i></p>
+    <!-- display the average rate the bank pays -->
     <p><%= link_to "See more details", bank_path(bank) %></p>
 </div>
