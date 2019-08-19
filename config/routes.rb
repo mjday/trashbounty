@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   post "transaction", to: "collections#validate", as: :validate
   get "dashboard", to: "users#dashboard", as: :users_dashboard
   get "help", to: "pages#help", as: :help
+  get "leaderboard", to: "pages#leaderboard", as: :leaderboard
 end

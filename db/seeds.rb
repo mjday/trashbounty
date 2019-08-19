@@ -48,10 +48,10 @@ types = ["Bitcoin", "Cash"]
     date: Date.today + rand(1..5),
     total_kg: rand(1..50),
     payment_type: types.sample,
-    user: User.find(rand(User.first.id..User.count)),
+    user: User.find(rand(1..10)),
     bank: Bank.find(rand(Bank.first.id..Bank.count))
   )
-  collection.total_amount = collection.total_kg * rand(1..10)
+  collection.total_amount = collection.total_kg * rates.sample
   collection.save!
 end
 
