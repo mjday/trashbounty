@@ -11,4 +11,10 @@ class Bank < ApplicationRecord
   validates :name, :address, :phone_number, :website, presence: true
   validates :products_accepted, presence: true
   # validates :materials_accepted, presence: true, inclusion: { in: ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"] }
+
+def average_rating
+    rating_array = self.reviews.pluck(:rating)
+    sum = rating_array.reduce(:+)
+    return sum / rating_array.count
+  end
 end

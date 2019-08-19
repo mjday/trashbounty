@@ -2,6 +2,9 @@
 
     <p><%= bank.name %></p>
     <p><%= bank.materials_accepted %></p>
+    <% if bank.reviews.any? %>
+<p><%= bank.average_rating%></p>
+    <% end %>
     <!-- avg rating of the bank -->
     <!-- <p><%#= bank.review.rating %></p> -->
 

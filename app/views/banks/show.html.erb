@@ -38,7 +38,10 @@
                 <th scope="row" class="px-0 pb-3 pt-2">
                   <i class="fas fa-cloud-moon living-coral-text"></i>
                 </th>
-                <td class="pb-3 pt-2">Materials Accepted: <%= @bank.materials_accepted %></td>
+                <% @plastics.each do |plastic| %>
+                <td class="pb-3 pt-2">Materials Accepted: <%= plastic.name %> - $<%= plastic.price_per_kg %>
+                  <% end %>
+                </td>
               </tr>
               <tr class="mt-2">
                 <th scope="row" class="px-0 pb-3 pt-2">
@@ -51,45 +54,21 @@
         </div>
       </div>
     </div> <!-- card map-card-->
+    <h3>Recent reviews</h3>
+    <div class="card-product">
+    <!--   add Avatar here />
+     -->  <p> <%= @bank.user.username  %></p>
+      <div class="card-product-infos">
+      <% @reviews.each do |review| %>
+        <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
+        <p><strong>Comment:</strong> <%= review.comment %></p>
+        <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
+
+      <% end %>
+      </div>
+    </div>
   </div> <!-- container -->
 
-
-<div class="container">
-  <h3><%= @bank.name %></h3>
-  <p>Address: <%= @bank.address %></p>
-  <p>Phone Number <%= @bank.phone_number %></p>
-  <p>Materials Accepted: <%= @bank.materials_accepted %></p>
-  <p>Products Accepted: <%= @bank.products_accepted %></p>
-  <p>Rate: $<%= @bank.rate_per_kg %></p>
-
-  <!-- <h3><%#= @bank.name %></h3>
-  <p>Address: <%#= @bank.address %></p>
-  <p>Phone Number <%#= @bank.phone_number %></p>
-  <p>Materials Accepted: <%#= @bank.materials_accepted %></p>
-  <p>Products Accepted: <%#= @bank.products_accepted %></p> -->
-
-
-<h3>Recent reviews</h3>
-<div class="card-product">
-<!--   add Avatar here />
- -->  <p> <%= @bank.user.username  %></p>
-  <div class="card-product-infos">
-  <% @reviews.each do |review| %>
-    <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
-    <p><strong>Comment:</strong> <%= review.comment %></p>
-    <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
-
-  <% end %>
-  </div>
-</div>
-
-
-
-
-  <!-- display the username of the reviewer next to the by: -->
-
-  <!-- renders Business (Recycle Bank) Users edit button  -->
-  <!-- show 'edit' button that updates the bank instance -->
   <% if @user.business == true %>
     <%= link_to "Edit", edit_bank_path(@bank) %>
 
@@ -99,7 +78,6 @@
   <!-- renders Collector Users Dashboard  -->
 <%= link_to "Search again", banks_path, class: "btn btn-lg btn-primary"  %>
 
-</div>
 
 
      </div>
