@@ -38,8 +38,9 @@
                 <th scope="row" class="px-0 pb-3 pt-2">
                   <i class="fas fa-cloud-moon living-coral-text"></i>
                 </th>
+                <td class="pb-3 pt-2">Price per KG:
                 <% @plastics.each do |plastic| %>
-                <td class="pb-3 pt-2">Materials Accepted: <%= plastic.name %> - $<%= plastic.price_per_kg %>
+                  <%= plastic.name %> - $<%= plastic.price_per_kg %>
                   <% end %>
                 </td>
               </tr>
@@ -49,6 +50,15 @@
                 </th>
                 <td class="pb-3 pt-2">Products Accepted: <%= @bank.products_accepted %></td>
               </tr>
+                <% if @bank.reviews.any? %>
+              <tr class="mt-2">
+                <th scope="row" class="px-0 pb-3 pt-2">
+                  <i class="fas fa-star-half-alt"></i>
+                </th>
+                <td class="pb-3 pt-2">
+                  Average Rating: <%= @bank.average_rating %> <i class="fas fa-star"></i></td>
+              </tr>
+            <% end %>
             </tbody>
           </table>
         </div>

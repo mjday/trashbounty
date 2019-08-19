@@ -3,7 +3,6 @@ class BanksController < ApplicationController
 
   def index
     @banks = Bank.geocoded
-    calculate_average_rating
     if params[:query].present?
       @banks = @banks.near(params[:query], 500)
     else
@@ -73,23 +72,6 @@ class BanksController < ApplicationController
 
   def bank_params
     params.require(:bank).permit(:name, :address, :phone_number, :website, :country, :materials_accepted, :products_accepted)
-  end
-
-  def calculate_average_rating
-    @banks.each do |bank|
-    # avg_rating = ""
-      avg = 0
-      if bank.reviews.any?
-        bank.reviews.each do |r|
-          avg += r.rating
-        end
-        # average = avg / bank.reviews.count.to_f
-        # bank.avg_rating = average
-        # bank.save!
-      # else
-      #   bank.avg_rating = 0
-      end
-    end
   end
 
 
