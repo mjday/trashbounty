@@ -2,9 +2,57 @@
 
 <div class="container">
   <div class="row justify-content-center align-items-center">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
 
-<div id="map" style="height: calc(50vh - 50px); width: 100vw" data-marker="<%= @marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      <div id="map" class="mb-3" style="height: calc(50vh - 50px); width: 100vw" data-marker="<%= @marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+<!-- Card -->
+  <div class="container">
+    <div class="card map-card">
+      <!-- Card content -->
+      <div class="card-body closed px-0">
+        <div class="white px-4 pb-4 pt-3-5">
+          <h5 class="card-title h5 living-coral-text"><%= @bank.name %></h5>
+          <hr>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row" class="px-0 pb-3 pt-2">
+                    <i class="fas fa-map-marker-alt living-coral-text"></i>
+                </th>
+                <td class="pb-3 pt-2"><%= @bank.address %></td>
+              </tr>
+              <tr class="mt-2">
+                <th scope="row" class="px-0 pb-3 pt-2">
+                  <i class="far fa-clock living-coral-text"></i>
+                </th>
+                <td class="pb-3 pt-2"><span class="deep-purple-text mr-2">Hours of Operations</td>
+              </tr>
+              <tr class="mt-2">
+                <th scope="row" class="px-0 pb-3 pt-2">
+                  <i class="fas fa-cloud-moon living-coral-text"></i>
+                </th>
+                <td class="pb-3 pt-2"><%= @bank.phone_number %></td>
+              </tr>
+              <tr class="mt-2">
+                <th scope="row" class="px-0 pb-3 pt-2">
+                  <i class="fas fa-cloud-moon living-coral-text"></i>
+                </th>
+                <td class="pb-3 pt-2">Materials Accepted: <%= @bank.materials_accepted %></td>
+              </tr>
+              <tr class="mt-2">
+                <th scope="row" class="px-0 pb-3 pt-2">
+                  <i class="fas fa-cloud-moon living-coral-text"></i>
+                </th>
+                <td class="pb-3 pt-2">Products Accepted: <%= @bank.products_accepted %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> <!-- card map-card-->
+  </div> <!-- container -->
+
 
 <div class="container">
   <h3><%= @bank.name %></h3>
@@ -13,6 +61,12 @@
   <p>Materials Accepted: <%= @bank.materials_accepted %></p>
   <p>Products Accepted: <%= @bank.products_accepted %></p>
   <p>Rate: $<%= @bank.rate_per_kg %></p>
+
+  <!-- <h3><%#= @bank.name %></h3>
+  <p>Address: <%#= @bank.address %></p>
+  <p>Phone Number <%#= @bank.phone_number %></p>
+  <p>Materials Accepted: <%#= @bank.materials_accepted %></p>
+  <p>Products Accepted: <%#= @bank.products_accepted %></p> -->
 
 
 <h3>Recent reviews</h3>
