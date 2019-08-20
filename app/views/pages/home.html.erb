@@ -1,40 +1,46 @@
-<nav id="navbar-color" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-  <div class="container">
-    <a class="navbar-brand order-1 mr-0" href="#"><img src="<%= asset_path('tb-logo-white.png') %>" alt="" width="68" height="68"></a>
-    <div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link text-white mr-3" href="#about">About<span class="sr-only">(current)</span></a>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand mr-auto" href="#"><img src="<%= asset_path('tb-logo-white.png') %>" alt="" width="68" height="68"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li>
+          <a class="nav-item nav-link text-white mr-3" href="#about">About</a>
+        </li>
+        <li>
           <a class="nav-item nav-link text-white mr-3" href="#bank">Banks</a>
-          <a class="nav-item nav-link text-white" href="#collectors">Collectors</a>
+        </li>
+        <li>
+          <a class="nav-item nav-link text-white mr-3" href="#collectors">Collectors</a>
+        </li>
+        <li>
           <a class="nav-item nav-link text-white" <%= link_to "Help", help_path %></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+  <style>
+    .JumboHeaderImg{
+      background-image: url("<%= asset_path('jumbotron_img') %>");
+      background-size: cover;
+    }
+  </style>
+
+  <div class="jumbotron jumbotron-fluid JumboHeaderImg bg-info text-white">
+    <div class="hm_container">
+        <img class="" src="<%= asset_path('trashbounty-logo.png') %>" alt="" width="150" height="150">
+        <p class="lead">Turning waste into a commodity</p>
+        <div class="signin-signup mt-5">
+          <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block"><%= link_to "Sign Up", new_user_registration_path %></button>
+          <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block mt-3"><%= link_to "Sign In", new_user_session_path %></button>
         </div>
-      </div>
     </div>
   </div>
-</nav>
-
-<style>
-  .JumboHeaderImg{
-    background-image: url("<%= asset_path('jumbotron_img') %>");
-    background-size: cover;
-  }
-</style>
-
-<div class="jumbotron jumbotron-fluid JumboHeaderImg bg-info text-white">
-  <div class="hm_container">
-      <img class="" src="<%= asset_path('trashbounty-logo.png') %>" alt="" width="150" height="150">
-      <p class="lead">Turning waste into a commodity</p>
-      <div class="signin-signup mt-5">
-        <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block"><%= link_to "Sign Up", new_user_registration_path %></button>
-        <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block mt-3"><%= link_to "Sign In", new_user_session_path %></button>
-      </div>
-  </div>
-</div>
-
 
 <div class="container">
   <h3 id="about" class="display-4 text-center my-5 text-muted">About Us</h3>
@@ -94,8 +100,8 @@
   <hr>
 
   <div class="row py-4 text-muted">
-    <div class="col-6">
-      <p><strong>Stay up-to-date with Trash Bounty</strong></p>
+    <div class="col-8 offset-2">
+      <p class="text-center"><strong>Stay up-to-date with Trash Bounty</strong></p>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Email">
         <span class="input-group-btn">
@@ -126,8 +132,6 @@
     </div>
   </div>
   <div>
-      <small>&copy; <%= Time.now.strftime("%Y") %> Trash Bounty</small>
+      <small class="d-block text-center mb-4">&copy; <%= Time.now.strftime("%Y") %> Trash Bounty</small>
   </div>
 </div>
-
-

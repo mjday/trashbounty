@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="business_view" class="<%= 'none' unless current_user.business %>">
+  <div id="business_view" class="<%= 'none' if current_user.business %>">
     <h3>Have the Collector scan this QR code</h3>
     <% if Rails.env.development? %>
       <% qrcode = RQRCode::QRCode.new("https://38c9a5e1.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
