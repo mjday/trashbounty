@@ -4,6 +4,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   has_many :collections
   has_many :banks
+  has_many :reviews, through: :collections
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

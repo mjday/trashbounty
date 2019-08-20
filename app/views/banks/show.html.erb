@@ -66,6 +66,7 @@
       </div>
     </div> <!-- card map-card-->
     <h3>Recent reviews</h3>
+      <% @reviews.each do |review| %>
     <div class="card-product">
        <% if @user.photo? %>
           <%= cl_image_tag @user.photo.url(:thumb) %>
@@ -74,14 +75,13 @@
         <% end %>
     <p> <%= @bank.user.username  %></p>
       <div class="card-product-infos">
-      <% @reviews.each do |review| %>
         <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
         <p><strong>Comment:</strong> <%= review.comment %></p>
         <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
 
-      <% end %>
       </div>
     </div>
+      <% end %>
   </div> <!-- container -->
 
 

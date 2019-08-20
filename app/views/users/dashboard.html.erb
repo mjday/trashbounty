@@ -53,8 +53,11 @@
                 <p>IDR or USD: </p>
                 <p>BTC: </p>
                 <p>Show a chart of performance</p>
+                <div id="line_chart" style="width: 100vw; height: 50vh;"></div>
               </div>
 
+
+              </div>
               <!-- Collection History Tab -->
               <div class="tab-pane fade" id="nav-collections" role="tabpanel" aria-labelledby="nav-collections-tab">
                 <p>Open your Camera App to scan the QR code shown by the Recycle Bank</p>
@@ -73,11 +76,14 @@
                     <% counter = 0 %>
                     <% @user.collections.each do |collection| %>
                     <tr>
-                      <td><%= counter + 1 %></td>
-                      <td><%= collection.date %></td>
+                      <td><%= link_to counter += 1, collection_path(collection.id) %></td>
+                      <%# raise %>
+                      <td><%= collection.date.strftime("%b %d, %Y") %></td>
                       <td><%= collection.total_kg %></td>
                       <td><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
+<!--                   <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td>
+ -->
                     </tr>
                     <% end %>
                   </tbody>
