@@ -52,10 +52,13 @@
 </table>
 
 
-
+<% unless current_user.reviews.find_by(user: current_user) %>
 <h3>Add a review of this collection, and your experience with this Recycling bank</h3>
         <%= render 'reviews/form' %>
+        <% else %>
+<%= current_user.reviews.find_by(user: current_user).rating %>
 
+<% end %>
 
 
 
