@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'pages#home'
 
-  resources :collections, only: [:index, :new, :create] do
+  resources :collections, only: [:index, :show, :new, :create] do
     resources :reviews, only: [:index, :new, :create]
   end
 
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   post "transaction", to: "collections#validate", as: :validate
   get "dashboard", to: "users#dashboard", as: :users_dashboard
   get "help", to: "pages#help", as: :help
+  get "leaderboard", to: "pages#leaderboard", as: :leaderboard
 end
