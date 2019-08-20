@@ -8,32 +8,43 @@ google.charts.setOnLoadCallback(drawChart);
 // instantiates the pie chart, passes in the data and
 // draws it.
 function drawChart() {
-  const info = document.querySelector('#info')
-  const date = info.querySelector('#data-date').innerText
-  const amount = info.querySelector('#data-amount').innerText
-  const kg = info.querySelector('#data-kg').innerText
-
+  let infos = document.querySelectorAll('#info tr')
+  if (infos) {
+      let datas = []
+  infos = infos.forEach((row) => {
+    let date = row.cells[1].innerText;
+    let total = parseFloat(row.cells[2].innerText);
+    let amount = parseFloat(row.cells[3].innerText);
+    datas.push({date, total, amount  })
+  })
+  // console.log(datas)
+  // console.log(infos)
+  // const date = info.querySelector('.data-date').innerText
+  // const amount = info.querySelector('.data-amount').innerText
+  // const kg = info.querySelector('.data-kg').innerText
+  // console.log(date);
+  // console.log(amount);
+  // console.log(kg);
   // Create the data table.
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Date');
   data.addColumn('number', 'Amount');
   data.addColumn('number', 'KG');
+  datas.forEach((row) => {
+   data.addRows([ [row.date, row.amount, row.total] ]);
+  })
 
-  data.addRows([
-    [date, parseInt(amount), parseInt(kg)],
-    ['hello', 5, 9],
-    [date, 5, 6],
-    [date, 6, 5]
-  ]);
-
+  let width = document.querySelector("#nav-summary").offsetWidth
   // Set chart options
-  var options = {'title':'Collections in Month',
-                 'width':400,
-                 'height':300};
+  var options = {'title':'Recent Collections'};
+                 // 'width':width,
+                 // 'height':300};
 
   // Instantiate and draw our chart, passing in some options.
   var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
   chart.draw(data, options);
+
+  }
 }
 
 export { drawChart };

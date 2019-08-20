@@ -49,13 +49,9 @@
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
               <!-- Summary Tab -->
               <div class="tab-pane fade show active" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
-                <p>Amount Earned</p>
-                <p>IDR or USD: </p>
-                <p>BTC: </p>
-                <p>Show a chart of performance</p>
+                <div id="line_chart" class="chart" style="width: 100vw; height: 50vh;">
               </div>
-                <div id="line_chart" style="width: 100vw; height: 50vh;"></div>
-
+</div>
 
               </div>
               <!-- Collection History Tab -->
@@ -72,14 +68,14 @@
                       <th class="th-sm">Payment Type</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id='info'>
                     <% counter = 0 %>
                     <% @user.collections.each do |collection| %>
-                    <tr id="info">
+                    <tr >
                       <td><%= link_to counter += 1, collection_path(collection.id) %></td>
-                      <td id="data-date"><%= collection.date.strftime("%b %d, %Y") %></td>
-                      <td id="data-kg"><%= collection.total_kg %></td>
-                      <td id="data-amount"><%= collection.total_amount %></td>
+                      <td class="data-date"><%= collection.date.strftime("%b %d, %Y") %></td>
+                      <td class="data-kg"><%= collection.total_kg %></td>
+                      <td class="data-amount"><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
 <!--                   <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td>
  -->
