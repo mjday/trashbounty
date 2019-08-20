@@ -66,19 +66,19 @@
       </div>
     </div> <!-- card map-card-->
     <h3>Recent reviews</h3>
+      <% @reviews.each do |review| %>
     <div class="card-product">
       <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle m-2" alt="avatar">
     <!--   add Avatar here />
      -->  <p> <%= @bank.user.username  %></p>
       <div class="card-product-infos">
-      <% @reviews.each do |review| %>
         <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
         <p><strong>Comment:</strong> <%= review.comment %></p>
         <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
 
-      <% end %>
       </div>
     </div>
+      <% end %>
   </div> <!-- container -->
 
 

@@ -11,6 +11,12 @@ class CollectionsController < ApplicationController
     # only the current user should be able to see the collection history
   end
 
+  def show
+    @collection = Collection.find(params[:id])
+    @review = Review.new
+
+  end
+
   def new
     if current_user.business
       redirect_to root_path
@@ -26,8 +32,8 @@ class CollectionsController < ApplicationController
   def create
     # raise
     @collection = Collection.new(collection_params)
-
     @bank = Bank.find(params[:collection][:bank_id])
+
     @collection.bank = @bank
     @collection.save
     redirect_to users_dashboard_path
