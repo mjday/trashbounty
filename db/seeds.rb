@@ -57,18 +57,46 @@ banks.first(10).each do |bank|
   # end
 end
 
+# verification needs to be created first
+# ex: Collection.id(1) should match Verification.id(1)
 types = ["Bitcoin", "Cash"]
 10.times do |i|
-  collection = Collection.new(
+  verification = Verification.create!(
     date: Date.today + rand(1..5),
-    total_kg: rand(1..50),
-    payment_type: types.sample,
-    user: User.find(rand(1..10)),
-    bank: Bank.find(rand(Bank.first.id..Bank.count))
+    total_kg: #,
+    payment_type: #,
+    # collection_id should be here
   )
-  collection.total_amount = collection.total_kg * rates.sample
-  collection.save!
+    collection = Collection.new(
+      date: Date.today + rand(1..5),
+      total_kg: verification.total_kg,
+      payment_type: types.sample,
+      user: User.find(rand(1..10)),
+      bank: Bank.find(rand(Bank.first.id..Bank.count))
+    )
+    collection.total_amount = collection.total_kg * rates.sample
+    collection.save!
+  end
 end
+# t.float "total_amount"
+# t.float "total_kg"
+# t.date "date"
+# t.string "payment_type"
+# t.bigint "bank_id"
+
+# a collection can only be created if there exists a corresponding verification
+# types = ["Bitcoin", "Cash"]
+# 10.times do |i|
+#   collection = Collection.new(
+#     date: Date.today + rand(1..5),
+#     total_kg: rand(1..50),
+#     payment_type: types.sample,
+#     user: User.find(rand(1..10)),
+#     bank: Bank.find(rand(Bank.first.id..Bank.count))
+#   )
+#   collection.total_amount = collection.total_kg * rates.sample
+#   collection.save!
+# end
 
 ratings = [1, 2, 3, 4, 5]
 comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]

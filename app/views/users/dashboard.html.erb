@@ -17,12 +17,8 @@
               <% else %>
                 <%= image_tag "default-avatar.png", class: "mr-3 avatar-bordered" %>
               <% end %>
-
               <div>
-                <!-- Title -->
                 <h4 class="card-title font-weight-bold mb-2">Welcome, <%= @user.username %></h4>
-                <!-- Subtitle -->
-                <!-- <p class="card-text"><i class="far fa-clock pr-2"></i>07/24/2018</p> -->
                 <p class="card-text">Rank</p>
               </div>
             </div>
@@ -34,11 +30,8 @@
             <div class="card-body pb-0">
               <h4 class="card-title font-weight-bold">Some header (if needed)?</h4>
               <p class="card-text mb-4">Some sub-header (if needed)?</p>
-
-
               <div class="d-flex justify-content-between">
                   <p class="display-4 align-self-end"><%# sum += collection.total_kg %><%= @sum %></p>
-
                 <p class="align-self-end pb-2">Collected (Kg)</p>
               </div>
             </div>
@@ -47,30 +40,24 @@
             <!-- Dashboard Nav -->
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-earned-tab" data-toggle="tab" href="#nav-earned" role="tab" aria-controls="nav-earned" aria-selected="true">Earned</a>
-                <a class="nav-item nav-link" id="nav-collected-tab" data-toggle="tab" href="#nav-collected" role="tab" aria-controls="nav-collected" aria-selected="false">Collected</a>
-                <a class="nav-item nav-link" id="nav-history-tab" data-toggle="tab" href="#nav-history" role="tab" aria-controls="nav-history" aria-selected="false">Collection History</a>
+                <a class="nav-item nav-link active" id="nav-summary-tab" data-toggle="tab" href="#nav-summary" role="tab" aria-controls="nav-summary" aria-selected="true">Summary</a>
+                <a class="nav-item nav-link" id="nav-collections-tab" data-toggle="tab" href="#nav-collections" role="tab" aria-controls="nav-collections" aria-selected="false">Collections</a>
               </div>
             </nav>
-            <!-- Earned Tab -->
+
+            <!-- Tabs section -->
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-earned" role="tabpanel" aria-labelledby="nav-earned-tab">
-                <p>Total Kg Collected </p>
-
-                <p> </p>
-                <hr>
+              <!-- Summary Tab -->
+              <div class="tab-pane fade show active" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
                 <p>Amount Earned</p>
-                <p>IDR: </p>
+                <p>IDR or USD: </p>
                 <p>BTC: </p>
+                <p>Show a chart of performance</p>
               </div>
-              <!-- Collected Tab -->
-              <div class="tab-pane fade" id="nav-collected" role="tabpanel" aria-labelledby="nav-collected-tab">
 
-                 <p>should show a chart</p>
-              </div>
               <!-- Collection History Tab -->
-              <div class="tab-pane fade" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab">
-
+              <div class="tab-pane fade" id="nav-collections" role="tabpanel" aria-labelledby="nav-collections-tab">
+                <p>Open your Camera App to scan the QR code shown by the Recycle Bank</p>
 
                 <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                   <thead>
@@ -89,12 +76,10 @@
                       <td><%= counter + 1 %></td>
                       <td><%= collection.date %></td>
                       <td><%= collection.total_kg %></td>
-                      <!-- total amount should be the total after the correctly calculated rates -->
                       <td><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
                     </tr>
                     <% end %>
-
                   </tbody>
                 </table>
 
@@ -110,6 +95,7 @@
   </div> <!-- Collector Dashboard Container -->
 
 <% else %>
+
   <!-- renders Business (Recycle Bank) Users Dashboard  -->
   <div class="container">
     <section id="tabs">
@@ -120,8 +106,7 @@
           <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active" id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank" aria-selected="true">Recycle Banks</a>
-              <a class="nav-item nav-link" id="nav-collection-tab" data-toggle="tab" href="#nav-collection" role="tab" aria-controls="nav-collection" aria-selected="false">Collections</a>
-              <a class="nav-item nav-link" id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="false">Reviews</a>
+              <a class="nav-item nav-link" id="nav-verification-tab" data-toggle="tab" href="#nav-verification" role="tab" aria-controls="nav-verification" aria-selected="false">Verifications</a>
             </div>
           </nav>
           <!-- Recycle Center Tab -->
@@ -133,6 +118,7 @@
                     <tr>
                       <th class="th-sm">#</th>
                       <th class="th-sm">My Recycle Center</th>
+                      <th class="th-sm">Verify</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -141,6 +127,14 @@
                   <tr>
                     <td><%= counter = counter + 1 %></td>
                     <td><%= link_to bank.name, bank_path(bank) %></td>
+                    <%# raise  %>
+                    <td class="text-center">
+                      <%= link_to new_bank_verification_path(bank) do %>
+                        <i class="fas fa-qrcode"></i>
+                          <!-- new_bank_verification
+                          GET  /banks/:bank_id/verifications/new -->
+                      <% end %>
+                    </td>
                   </tr>
                   <% end %>
                 </table>
@@ -148,13 +142,10 @@
                   <%= link_to 'List a recycling center', new_bank_path, class: "btn btn-warning" %>
             </div>
             <!-- Transactions Tab -->
-            <div class="tab-pane fade" id="nav-collection" role="tabpanel" aria-labelledby="nav-collection-tab">
+            <div class="tab-pane fade" id="nav-verification" role="tabpanel" aria-labelledby="nav-verification-tab">
                <p>View Verification history</p>
             </div>
-            <!-- Reviews Tab -->
-            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
-              <p>see all my reviews here...?</p>
-            </div>
+
           </div> <!-- end Tabs content -->
         </div> <!-- end col-xs-12 -->
       </div> <!-- end row -->
