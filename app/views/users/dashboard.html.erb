@@ -10,7 +10,6 @@
 
           <!-- Profile Card -->
           <div class="card promoting-card my-3">
-            <!-- Card content -->
             <div class="card-body d-flex flex-row">
               <% if @user.photo? %>
                 <%= cl_image_tag @user.photo.url(:thumb) %>
@@ -20,16 +19,17 @@
               <div>
                 <h4 class="card-title font-weight-bold mb-2">Welcome, <%= @user.username %></h4>
                 <p class="card-text">Rank</p>
+                <p>BTC: <%= @user.bitcoin_address %></p>
               </div>
             </div>
-          </div> <!-- End Profile Card -->
+          </div>
+          <!-- End Profile Card -->
 
           <!-- Dashboard Card -->
           <div class="card chart-card">
-            <!-- Card content -->
             <div class="card-body pb-0">
-              <h4 class="card-title font-weight-bold">Some header (if needed)?</h4>
-              <p class="card-text mb-4">Some sub-header (if needed)?</p>
+              <h4 class="card-title font-weight-bold">My Dashboard</h4>
+              <!-- <p class="card-text mb-4">Some sub-header (if needed)?</p> -->
               <div class="d-flex justify-content-between">
                   <p class="display-4 align-self-end"><%# sum += collection.total_kg %><%= @sum %></p>
                 <p class="align-self-end pb-2">Collected (Kg)</p>
@@ -42,19 +42,20 @@
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-summary-tab" data-toggle="tab" href="#nav-summary" role="tab" aria-controls="nav-summary" aria-selected="true">Summary</a>
                 <a class="nav-item nav-link" id="nav-collections-tab" data-toggle="tab" href="#nav-collections" role="tab" aria-controls="nav-collections" aria-selected="false">Collections</a>
+                <a class="nav-item nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Bitcoin</a>
               </div>
             </nav>
 
             <!-- Tabs section -->
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
               <!-- Summary Tab -->
               <div class="tab-pane fade show active" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
-                <div id="line_chart" class="chart" style="width: 100vw; height: 50vh;">
+                <div id="line_chart" class="chart" style="width: 100vw; height: 50vh;"></div>
               </div>
-</div>
+              <!-- end Summary Tab -->
 
-              </div>
-              <!-- Collection History Tab -->
+              <!-- Collections Tab -->
               <div class="tab-pane fade" id="nav-collections" role="tabpanel" aria-labelledby="nav-collections-tab">
                 <p>Open your Camera App to scan the QR code shown by the Recycle Bank</p>
 
@@ -76,25 +77,32 @@
                       <td class="data-date"><%= collection.date.strftime("%b %d, %Y") %></td>
                       <td class="data-kg"><%= collection.total_kg %></td>
                       <td class="data-amount"><%= collection.total_amount %></td>
-
-
-                   
                       <td><%= collection.payment_type %></td>
-<!--                   <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td>
- -->
+                      <!-- <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td> -->
                     </tr>
                     <% end %>
                   </tbody>
                 </table>
+              </div>
+              <!-- end Collections Tab -->
 
-              </div> <!-- End Collection History Tab -->
-            </div> <!-- end Tabs content -->
+              <!-- Bitcoin Tab -->
+              <!-- how to Interprolate @user.bitcoin_address -->
+                <!-- can i just scrap the URL? -->
+                <!-- cant click on mobile screen - only desktop -->
+              <div class="tab-pane fade show active" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+                <% @user.bitcoin_address %>
+                  <% url = "https://live.blockcypher.com/widget/btc-testnet/" + @user.bitcoin_address.to_s + "/balance/" %>
+                  <iframe src="<%= url %>" style="overflow:hidden;" frameborder="0"></iframe>
+              </div>
+              <!-- end Bitcoin Tab -->
+
             </div>
-            <!-- End Card content -->
-          </div> <!-- End Dashboard Card -->
-
+            <!-- end Tabs section -->
+          </div>
+          <!-- End Dashboard Card -->
         </div> <!-- end col-xs-12 -->
-      </div> <!-- end row -->
+      </div> <!-- row -->
     </div> <!-- end container -->
   </div> <!-- Collector Dashboard Container -->
 
