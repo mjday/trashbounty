@@ -1,8 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-  <%= image_tag "trashbounty-logo.png", class: "nav-logo"%>
-  <% end %>
-
+<div class="container navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div>
+    <%= link_to root_path, class: "navbar-brand order-1" do %>
+    <%= image_tag "trashbounty-logo.png", class: "nav-logo"%>
+    <% end %>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,17 +12,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </li>
-            <li class="nav-item">
-            <%= link_to "Update email address", edit_user_registration_path,class: "dropdown-item" %>
-      </li>
-
+        <li class="nav-item">
+          <%= link_to "Edit Profile", edit_user_registration_path,class: "dropdown-item" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </li>
       <% else %>
-      <li class="nav-item">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-      </li>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link mr-3" %>
+        </li>
+          <%= link_to "Sign-up", new_user_registration_path, class: "nav-link" %>
+        <li class="nav-item">
+        </li>
       <% end %>
     </ul>
   </div>
