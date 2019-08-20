@@ -53,8 +53,8 @@
                 <p>IDR or USD: </p>
                 <p>BTC: </p>
                 <p>Show a chart of performance</p>
-                <div id="line_chart" style="width: 100vw; height: 50vh;"></div>
               </div>
+                <div id="line_chart" style="width: 100vw; height: 50vh;"></div>
 
 
               </div>
@@ -75,12 +75,11 @@
                   <tbody>
                     <% counter = 0 %>
                     <% @user.collections.each do |collection| %>
-                    <tr>
+                    <tr id="info">
                       <td><%= link_to counter += 1, collection_path(collection.id) %></td>
-                      <%# raise %>
-                      <td><%= collection.date.strftime("%b %d, %Y") %></td>
-                      <td><%= collection.total_kg %></td>
-                      <td><%= collection.total_amount %></td>
+                      <td id="data-date"><%= collection.date.strftime("%b %d, %Y") %></td>
+                      <td id="data-kg"><%= collection.total_kg %></td>
+                      <td id="data-amount"><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
 <!--                   <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td>
  -->

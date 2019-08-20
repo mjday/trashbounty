@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :collection
   belongs_to :user
-  validates :rating, presence: true, inclusion: {in: 1..5}
+  # belongs_to :bank, optional: true
+  validates :rating, presence: true
 end

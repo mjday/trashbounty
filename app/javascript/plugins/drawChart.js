@@ -8,26 +8,31 @@ google.charts.setOnLoadCallback(drawChart);
 // instantiates the pie chart, passes in the data and
 // draws it.
 function drawChart() {
+  const info = document.querySelector('#info')
+  const date = info.querySelector('#data-date').innerText
+  const amount = info.querySelector('#data-amount').innerText
+  const kg = info.querySelector('#data-kg').innerText
 
   // Create the data table.
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Topping');
-  data.addColumn('number', 'Slices');
+  data.addColumn('string', 'Date');
+  data.addColumn('number', 'Amount');
+  data.addColumn('number', 'KG');
+
   data.addRows([
-    ['Mushrooms', 3],
-    ['Onions', 1],
-    ['Olives', 1],
-    ['Zucchini', 1],
-    ['Pepperoni', 2]
+    [date, parseInt(amount), parseInt(kg)],
+    ['hello', 5, 9],
+    [date, 5, 6],
+    [date, 6, 5]
   ]);
 
   // Set chart options
-  var options = {'title':'How Much Pizza I Ate Last Night',
+  var options = {'title':'Collections in Month',
                  'width':400,
                  'height':300};
 
   // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.PieChart(document.getElementById('line_chart'));
+  var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
   chart.draw(data, options);
 }
 
