@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_030809) do
+ActiveRecord::Schema.define(version: 2019_08_19_094343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,9 +126,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_030809) do
     t.datetime "updated_at", null: false
     t.string "payment_type"
     t.bigint "bank_id"
-    t.bigint "collection_id"
     t.index ["bank_id"], name: "index_verifications_on_bank_id"
-    t.index ["collection_id"], name: "index_verifications_on_collection_id"
   end
 
   add_foreign_key "bank_recyclables", "banks"
@@ -144,5 +142,4 @@ ActiveRecord::Schema.define(version: 2019_08_20_030809) do
   add_foreign_key "plastics", "banks"
   add_foreign_key "reviews", "collections"
   add_foreign_key "verifications", "banks"
-  add_foreign_key "verifications", "collections"
 end
