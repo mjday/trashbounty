@@ -30,37 +30,20 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    # raise
     @collection = Collection.new(collection_params)
     @bank = Bank.find(params[:collection][:bank_id])
-
+    verification = Verification.find(params[:collection][:verification_id])
     @collection.bank = @bank
+    @collection.verification = verification
+    @collection.user_id = current_user.id
     @collection.save
     redirect_to users_dashboard_path
-    # @collection = Collection.new(params)
-    # render plain: params.to_json
-
-    # Collection.new(collection_params)
-    # @collection.user_id = current_user.id
-    # @bank = Bank.find(params[:bank_id])
-    # @collection.bank_id = @bank.id
-    # if @collection.save
-    #   redirect_to users_dashboard_path
-    # else
-    #   render 'new'
-    # end
-    @collection.user_id = current_user.id
-    # @bank = Bank.find(params[:bank_id])
-    @collection.bank_id = @bank.id
-
-    @collection.save
 
     # if @collection.save
     #   redirect_to users_dashboard_path
     # else
     #   render 'new'
     # end
-
   end
 
   def transaction
