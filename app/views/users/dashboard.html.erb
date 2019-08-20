@@ -20,7 +20,8 @@
               <div>
 
                 <h4 class="card-title font-weight-bold mb-2">Welcome, <%= @user.username %></h4>
-                <p class="card-text">Rank</p>
+                <%= link_to "Rank", leaderboard_path %>
+                <p class="card-text"></p>
               </div>
             </div>
           </div> <!-- End Profile Card -->
@@ -29,13 +30,13 @@
           <div class="card chart-card">
             <!-- Card content -->
             <div class="card-body pb-0">
-              <h4 class="card-title font-weight-bold">Some header (if needed)?</h4>
+              <h4 class="card-title font-weight-bold">Current Status</h4>
 
-              <p class="card-text mb-4">Some sub-header (if needed)?</p>
+              <p class="card-text mb-4">Total Plastic Collected</p>
 
-              <div class="d-flex justify-content-between">
-                  <p class="display-4 align-self-end"><%# sum += collection.total_kg %><%= @sum %></p>
-                <p class="align-self-end pb-2">Collected (Kg)</p>
+              <div class="d-flex row">
+                  <p class="ml-3 display-4 align-self-end"><%# sum += collection.total_kg %><%= @sum %></p>
+                <p class="ml-2 align-self-end pb-2">Collected (Kg)</p>
               </div>
             </div>
             <!-- End Card content -->

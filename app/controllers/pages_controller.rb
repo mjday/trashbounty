@@ -19,6 +19,29 @@ class PagesController < ApplicationController
   end
 
   def leaderboard
+    # @total = total_per_user
+    # @collections = Collection.all
     @users = User.all
+    @sum = total_kg
   end
+
+  def total_kg
+    @collections = Collection.all
+    sum = 0.0
+    @collections.each do |collection|
+      sum += collection.total_kg
+    end
+      sum
+    end
+
+    # def total_per_user
+    #   @collections = Collection.all
+    #   @user = User.all
+    #   @user.collections = @collections
+    #   # raise
+    #   @collections.each do |collection|
+    #     collection.user_id
+    #   end
+    # end
+
 end
