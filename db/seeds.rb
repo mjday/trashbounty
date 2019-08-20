@@ -83,7 +83,8 @@ comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better
   review = Review.create!(
     rating: ratings.sample,
     comment: comments.sample,
-    collection: Collection.find(rand(1..10))
+    collection: Collection.find(rand(1..10)),
+    user: User.find(rand(1..10))
   )
 end
 puts "Database ready"
