@@ -21,22 +21,21 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, label: false,
-                hint: "leave it blank if you don't want to change it",
+    <%= f.input :current_password, label: false,
+                hint: "we need your current password to confirm your changes",
                 required: false,
                 placeholder: "password",
+                input_html: { autocomplete: "current-password" } %>
+
+    <%= f.input :password, label: false,
+                required: false,
+                placeholder: "new password",
                 input_html: { autocomplete: "new-password" } %>
 
-    <%= f.input :password_confirmation, label: false,
-                required: false,
+    <%= f.input :password_confirmation,label: false,
+                required: true,
                 placeholder: "password confirmation",
                 input_html: { autocomplete: "new-password" } %>
-
-    <%= f.input :current_password,label: false,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                placeholder: "new password",
-                input_html: { autocomplete: "current-password" } %>
 
   <center><div class="form-actions " >
     <%= f.button :submit, "Update", class: "btn btn-success" %>
