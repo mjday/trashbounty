@@ -57,6 +57,24 @@ banks.first(10).each do |bank|
   # end
 end
 
+# verification needs to be created first
+# ex: Collection.id(1) should match Verification.id(1)
+10.times do |i|
+  verification = Verification.new(
+    date: Date.today + rand(1..5),
+    total_kg: #,
+    payment_type: #,
+
+
+  )
+end
+# t.float "total_amount"
+# t.float "total_kg"
+# t.date "date"
+# t.string "payment_type"
+# t.bigint "bank_id"
+
+# a collection can only be created if there exists a corresponding verification
 types = ["Bitcoin", "Cash"]
 10.times do |i|
   collection = Collection.new(
