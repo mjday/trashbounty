@@ -1,0 +1,17 @@
+/*! `Custom` Bootstrap 4 theme */
+
+$enable-grid-classes:false;
+$primary:#4f80c7;
+$secondary:#868e96;
+$success:#28a745;
+$danger:#dc3545;
+$info:#17a2b8;
+$warning:#ffc107;
+$light:#f8f9fa;
+$dark:#343a40;
+
+// Add SASS theme customizations here..
+html {font-size: .8rem;}
+@include media-breakpoint-up(sm) {html {font-size: .9rem;}}
+@include media-breakpoint-up(md) {html {font-size: .9rem;}}
+@include media-breakpoint-up(lg) {html {font-size: 1rem;}}

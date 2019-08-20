@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'json'
 
+puts "Starting....."
+
 10.times do |i|
   user_collector = User.create!(
     email: Faker::Internet.email,
@@ -27,7 +29,11 @@ serialized_banks = File.read(filepath)
 
 banks = JSON.parse(serialized_banks)
 
-rates = [0.35, 0.3, 0.25, 0.2, 0.15]
+rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
+# materials_accepted = ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA",
+#   "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"]
+plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
+i = 0
 banks.first(10).each do |bank|
   bk = Bank.create!(
     name: bank["name"],
@@ -35,28 +41,44 @@ banks.first(10).each do |bank|
     phone_number: bank["phone_number"],
     website: bank["website"],
     country: bank["country"],
-    materials_accepted: bank["materials_accepted"],
     products_accepted: bank["products_accepted"],
     user: User.find(rand(11..20)),
-    rate_per_kg: rates.sample
   )
+  # create 1..4 materials (plastic_types)
+  # 4.times do
+    plastic_type.each do |p|
+      Plastic.create!(
+        name: p,
+        price_per_kg: rates.sample,
+        bank: bk
+      )
+    end
+  # i += 1
+  # end
 end
 
 types = ["Bitcoin", "Cash"]
 10.times do |i|
-  collection = Collection.new(
+  verification = Verification.create!(
     date: Date.today + rand(1..5),
     total_kg: rand(1..50),
     payment_type: types.sample,
-    user: User.find(rand(User.first.id..User.count)),
     bank: Bank.find(rand(Bank.first.id..Bank.count))
   )
-  collection.total_amount = collection.total_kg * rand(1..10)
+  collection = Collection.new(
+    date: verification.date,
+    total_kg: verification.total_kg,
+    payment_type: verification.payment_type,
+    user: User.find(rand(1..10)),
+    bank: verification.bank,
+    verification: verification
+  )
+  collection.total_amount = collection.total_kg * rates.sample
   collection.save!
 end
 
 ratings = [1, 2, 3, 4, 5]
-comments = ["Great", "Good", "Okay", "Poor", "Terrible"]
+comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]
 10.times do |i|
   review = Review.create!(
     rating: ratings.sample,
@@ -64,3 +86,4 @@ comments = ["Great", "Good", "Okay", "Poor", "Terrible"]
     collection: Collection.find(rand(1..10))
   )
 end
+puts "Database ready"
