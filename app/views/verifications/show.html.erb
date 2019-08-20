@@ -2,9 +2,9 @@
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
     <!-- <h3>Have the Collector scan this QR code</h3> -->
     <% if Rails.env.development? %>
-      <% qrcode = RQRCode::QRCode.new("https://e0cb303e.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+         <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% elsif Rails.env.production? %>
-      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+        <% qrcode = RQRCode::QRCode.new("https://e0cb303e.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
 
     <% svg = qrcode.as_svg(
