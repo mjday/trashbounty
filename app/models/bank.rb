@@ -12,13 +12,12 @@ class Bank < ApplicationRecord
   validates :products_accepted, presence: true
   # validates :materials_accepted, presence: true, inclusion: { in: ["ABS", "HDPE", "HIPS", "LDPE", "LLDPE", "PA", "PC", "PE", "PET", "PP", "PS", "PVC", "WastePlastic"] }
 
-def average_rating
+  def average_rating
     rating_array = self.reviews.pluck(:rating)
     sum = rating_array.reduce(:+)
     sum /= rating_array.count
     return sum.round(2)
   end
-
 
   def average_price
     price_array = self.plastics.pluck(:price_per_kg)

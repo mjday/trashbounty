@@ -8,10 +8,15 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-  <link rel="manifest" href="/manifest.json" />
-<meta name="apple-mobile-web-app-capable" content="yes"></head>
-  <body>
 
+<!-- added according to google charts instructions-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+          <!--Load the AJAX API-->
+</head>
+  <body>
     <% unless controller.controller_name == "pages" && controller.action_name == "home" ||
       controller.controller_name == "registrations" && controller.action_name == "new" ||
       controller.controller_name == "sessions" && controller.action_name == "new" %>
@@ -23,13 +28,13 @@
     <div class="content">
       <%= yield %>
     </div>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
 
       <% unless controller.controller_name == "pages" && controller.action_name == "home" ||
       controller.controller_name == "registrations" && controller.action_name == "new" ||
       controller.controller_name == "sessions" && controller.action_name == "new" %>
-       <%= render 'shared/footer' %>
     <% end %>
   </body>
 </html>
