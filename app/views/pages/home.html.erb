@@ -1,50 +1,130 @@
-<div class="banner">
-
-<div class="container-fluid" style="height: 100vh;">
-    <div class="ml-2 pt-3 row justify-content-start">
-        <div class="col-xs-2"><img src="<%= asset_path('trashbounty-logo.png') %>" alt="trashbounty logo" height="40vh" width="40vw">
-        </div>
+<nav id="navbar-color" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <a class="navbar-brand order-1 mr-0" href="#" target="_blank"><img src="<%= asset_path('tb-logo-white.png') %>" alt="" width="68" height="68"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link text-white mr-3" href="#about">About<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link text-white mr-3" href="#bank">Banks</a>
+        <a class="nav-item nav-link text-white" href="#collectors">Collectors</a>
+      </div>
     </div>
-      <div class="ml-2 row justify-content-start">
-        <div class="col-xs-6"><h1>Trash Bounty</h1>
+  </div>
+</nav>
+
+<style>
+  .JumboHeaderImg{
+    background-image: url("<%= asset_path('jumbotron_img') %>");
+    background-size: cover;
+  }
+</style>
+
+<div class="jumbotron jumbotron-fluid JumboHeaderImg bg-info text-white">
+  <div class="hm_container">
+      <img class="" src="<%= asset_path('trashbounty-logo.png') %>" alt="" width="150" height="150">
+      <p class="lead">Turning waste into a commodity</p>
+      <div class="signin-signup mt-5">
+        <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block"><%= link_to "Sign Up", new_user_registration_path %></button>
+        <button type="button" class="col-6 col-lg-4 btn btn-lg btn-primary btn-block mt-3"><%= link_to "Sign In", new_user_session_path %></button>
+      </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h3 id="about" class="display-4 text-center my-5 text-muted">About Us</h3>
+  <p class="about">It‘s our mission to stop Ocean Plastic by gathering people together to monetize waste while improving lives. Trash Bounty is a root cause solution to prevent the flow of plastic into our oceans.</p>
+
+  <h3 class="my-5 text-muted">Meet the Team</h3>
+
+  <div class="row d-flex">
+
+    <div class="person-card col-9 col-md-6 col-xl-3 p-5 mx-auto">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<%= asset_path('simon_profile.png') %>" alt="Mike Profile Image">
+        <div class="card-body">
+          <h4 class="card-title">Mike Day</h4>
+          <p class="card-text">The visionary for Trash Bounty, also known as the Messiah. Mike was inspired to start Trash Bounty after his 12 years in Thailand and noticing the devastating impact of single use plastic is having on our environment.</p>
         </div>
       </div>
-        <div class="ml-3 row justify-content-start">
-          <div class="col-xs-6"><p>Turning waste into a commodity</p>
-          </div>
+    </div>
+
+    <div class="person-card col-9 col-md-6 col-xl-3 p-5 mx-auto">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<%= asset_path('simon_profile.png') %>" alt="Don Profile Image">
+        <div class="card-body">
+          <h4 class="card-title">Don Park</h4>
+          <p class="card-text">Our Crypto genius on the team. Don brings his extensive knowledge of cryptocurrencies to Trash Bounty platform to ensure that even the unbanked can use our platform.</p>
         </div>
+      </div>
+    </div>
 
-
-    <div class="mt-4 row center-rows justify-content-center align-items-end">
-        <form action="/banks" method="get" class="form-inline col-xs-8">
-            <input type="text" name="query" id="location" placeholder="Search a Location" class="form-control">
-        <button type="submit" class="fas fa-search btn btn-primary"></button>
-        </form>
-
-   <!--          <div class="col-xs-6">
-                <form action="/banks" method="get"class="form-inline">
-                <input type="text" name="query" class="form-control" id="location" placeholder="Search a Location">
-                <input type="submit" value="button" class="btn btn-primary">
-              <div class="col-xs-1"><button type="submit" class="fas fa-search btn btn-primary"></button></div>
- -->          <!-- </form>
-            </div>  -->
-
-
-<!--       <div class="col-xs-6">search bar</div>
- -->    </div>
-
-
-
-        <div class="center-rows row justify-content-center align-items-end">
-          <div id = "buttons" class="col-xs-6"><%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %>
-
-          </div>
+    <div class="person-card col-9 col-md-6 col-xl-3 p-5 mx-auto">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<%= asset_path('simon_profile.png') %>" alt="Neville Profile Image">
+        <div class="card-body">
+          <h4 class="card-title">Neville Mottet</h4>
+          <p class="card-text">When he's not at one of Canggus Fast Food restaurants, Neville can be found in our Trash Bounty offices making our application look beauiful.</p>
         </div>
-          <div class="row center-rows justify-content-center">
-            <div class="col-xs-6"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %>
+      </div>
+    </div>
 
-            </div>
-          </div>
+    <div class="person-card col-9 col-md-6 col-xl-3 p-5 mx-auto">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<%= asset_path('simon_profile.png') %>" alt="Simon Profile Image">
+        <div class="card-body">
+          <h4 class="card-title">Simon Lindsay</h4>
+          <p class="card-text">After selling his soul for the last decade working in the world of Investment Banking. Simon has now decided to use his powers for good and join the Trash Bounty team.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <h3 id="bank" class="display-4 text-center my-5 text-muted">Find a Bank</h3>
+
+  <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"style="height: calc(100vh - 65px - 54px); width: 100%"></div>
+
+  <h3 id="collectors" class="display-4 text-center my-5 text-muted">Join the Revolution</h3>
+
+  <hr>
+
+  <div class="row py-4 text-muted">
+    <div class="col-6">
+      <p><strong>Stay up-to-date with Trash Bounty</strong></p>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Email">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button">Sign up</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row py-3">
+    <div class="mx-auto">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fab fa-facebook-square"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fab fa-twitter-square"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fab fa-github-square"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fab fa-youtube-square"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+      <small>&copy; <%= Time.now.strftime("%Y") %> Trash Bounty</small>
+  </div>
 </div>
+
+
