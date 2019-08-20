@@ -2,7 +2,7 @@
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
     <!-- <h3>Have the Collector scan this QR code</h3> -->
     <% if Rails.env.development? %>
-      <% qrcode = RQRCode::QRCode.new("https://cc98787e.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+      <% qrcode = RQRCode::QRCode.new("https://e0cb303e.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% else %>
       <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
@@ -40,6 +40,8 @@
 
       <%= f.input :payment_type, disabled: true, input_html: { value: @verification.payment_type } %>
       <%= f.hidden_field :payment_type, value: @verification.payment_type %>
+      <%= f.hidden_field :verification_id, value: @verification.id %>
+
 
       <%= f.hidden_field :bank_id, value: @bank.id.to_i %>
 
