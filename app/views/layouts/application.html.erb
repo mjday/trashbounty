@@ -9,17 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
-  google.charts.load('current', {packages: ['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-</script>
 <!-- added according to google charts instructions-->
 
   <link rel="manifest" href="/manifest.json" />
-<meta name="apple-mobile-web-app-capable" content="yes"></head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+          <!--Load the AJAX API-->
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
   <body>
-
     <% unless controller.controller_name == "pages" && controller.action_name == "home" ||
       controller.controller_name == "registrations" && controller.action_name == "new" ||
       controller.controller_name == "sessions" && controller.action_name == "new" %>
@@ -31,6 +28,7 @@
     <div class="content">
       <%= yield %>
     </div>
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
 

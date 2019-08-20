@@ -85,12 +85,15 @@
                     <% counter = 0 %>
                     <% @user.collections.each do |collection| %>
                     <tr>
-                      <td><%= counter + 1 %></td>
-                      <td><%= collection.date %></td>
+                      <td><%= link_to counter += 1, collection_path(collection.id) %></td>
+                      <%# raise %>
+                      <td><%= collection.date.strftime("%b %d, %Y") %></td>
                       <td><%= collection.total_kg %></td>
                       <!-- total amount should be the total after the correctly calculated rates -->
                       <td><%= collection.total_amount %></td>
                       <td><%= collection.payment_type %></td>
+<!--                   <td><%= link_to new_collection_review_path(collection), class: "fas fa-star" %></td>
+ -->
                     </tr>
                     <% end %>
 
