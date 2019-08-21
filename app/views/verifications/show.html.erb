@@ -9,6 +9,13 @@
       <% qrcode = RQRCode::QRCode.new("https://efa08145.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
 
+
+          <%= "https://efa08145.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
+          <%= "https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
+
+
+
+
     <% svg = qrcode.as_svg(
       offset: 0,
       color: '000',
@@ -16,7 +23,6 @@
       module_size: 6
     ) %>
 
-    <%= "https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s %>
 
     <% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %>
 
