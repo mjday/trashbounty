@@ -3,7 +3,7 @@ require 'json'
 
 puts "Starting....."
 
-30.times do |i|
+20.times do |i|
   user_collector = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -13,7 +13,7 @@ puts "Starting....."
   )
 end
 
-30.times do |i|
+20.times do |i|
   user_bank = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -54,7 +54,7 @@ end
 ratings = [3, 4, 5]
 comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]
 types = ["Bitcoin", "Cash"]
-50.times do |i|
+40.times do |i|
   verification = Verification.create!(
     date: Date.today + rand(1..5),
     total_kg: rand(1..50),
