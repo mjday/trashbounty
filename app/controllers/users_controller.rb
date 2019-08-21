@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   def dashboard
     @user = current_user
-    @collections = Collection.where(user: @user)
+    @collections = Collection.where(user: @user).order('date asc')
+    # raise
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
-    # raise
   end
 
   def get_total_kg
@@ -15,5 +15,9 @@ class UsersController < ApplicationController
       sum += collection.total_kg
     end
     sum
+  end
+
+  def camera
+    @user = current_user
   end
 end
