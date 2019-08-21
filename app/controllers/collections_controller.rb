@@ -14,7 +14,6 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @review = Review.new
-
   end
 
   def new
@@ -44,6 +43,14 @@ class CollectionsController < ApplicationController
     # else
     #   render 'new'
     # end
+  end
+
+  def user_ranking
+    @ranking = Collection.all.group(:user_id).sum(total_kg: :desc).index(current_user.id)
+    # select all collections from collections table
+    # sum kg collected grouped by user_id
+    # rank in descending order
+    # pull back user ranking based on current user
   end
 
   def transaction

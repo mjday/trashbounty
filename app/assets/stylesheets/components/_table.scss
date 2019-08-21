@@ -1,0 +1,23 @@
+.table-striped > tbody > tr:nth-child(2n+1) > td {
+   background-color: $primary;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td > a {
+   color: #fff;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td > a:hover {
+  text-decoration: none;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td > a {
+   color: $primary;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td > a:hover {
+   text-decoration: none;
+}
+
+.table-striped > thead > tr > th {
+   color: $primary;
+}
