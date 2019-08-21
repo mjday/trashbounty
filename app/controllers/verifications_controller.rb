@@ -9,7 +9,8 @@ class VerificationsController < ApplicationController
       date: @verification.date,
       total_amount: @verification.total_amount,
       total_kg: @verification.total_kg,
-      payment_type: @verification.payment_type)
+      payment_type: @verification.payment_type
+    )
   end
 
   def new
