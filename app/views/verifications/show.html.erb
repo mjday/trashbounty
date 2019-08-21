@@ -1,8 +1,10 @@
 <div class="container">
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
-    <!-- <h3>Have the Collector scan this QR code</h3> -->
+
+    <!-- <%# qrcode = RQRCode::QRCode.new("https://20f3ae91.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %> -->
+
     <% if Rails.env.development? %>
-      <% qrcode = RQRCode::QRCode.new("https://20f3ae91.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% else %>
       <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
