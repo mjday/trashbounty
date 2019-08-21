@@ -51,8 +51,8 @@ banks.first(10).each do |bank|
   end
 end
 
-ratings = [1, 2, 3, 4, 5]
-comments = ["Great, would recommend", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]
+ratings = [3, 4, 5]
+comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]
 types = ["Bitcoin", "Cash"]
 30.times do |i|
   verification = Verification.create!(
