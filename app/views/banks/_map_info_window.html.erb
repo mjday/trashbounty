@@ -13,7 +13,7 @@
             <% if bank.reviews.any? %>
             <td><%= bank.average_rating%> <i class="fas fa-star"></td>
                   <% end %>
-                   <% if bank.plastics.present? %>
+            <% if bank.plastics.present? %>
             <td>$<%= bank.average_price%></td>
             <% end %>
           </tr>
