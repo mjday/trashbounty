@@ -2,6 +2,14 @@
    background-color: $primary;
 }
 
+.table-striped > tbody > tr:nth-child(2n+1) > td {
+   color: #fff;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td {
+   color: $primary;
+}
+
 .table-striped > tbody > tr:nth-child(2n+1) > td > a {
    color: #fff;
 }
@@ -20,4 +28,8 @@
 
 .table-striped > thead > tr > th {
    color: $primary;
+}
+
+.td-active {
+  background-color: $success;
 }
