@@ -1,11 +1,23 @@
 <div class="info-window">
-
-    <p><%= bank.name %></p>
-    <p><%= bank.materials_accepted %></p>
-    <% if bank.reviews.any? %>
-<p>Average Rating: <%= bank.average_rating%> <i class="fas fa-star"></i></p>
-    <% end %>
-<p>Average Price per KG: $<%= bank.average_price%> <i class="fas fa-star"></i></p>
-    <!-- display the average rate the bank pays -->
+  <p><%= bank.name %></p>
+    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="50%">
+        <thead>
+          <tr>
+            <th class="th-sm">Avg Rating</th>
+              <th class="th-sm">Avg price per KG</th>
+            </tr>
+          </thead>
+          <tbody>
+           <tr>
+            <% if bank.reviews.any? %>
+            <td><%= bank.average_rating%> <i class="fas fa-star"></td>
+                  <% end %>
+            <td>$<%= bank.average_price%></td>
+          </tr>
+        </tbody>
+      </table>
     <p><%= link_to "See more details", bank_path(bank) %></p>
 </div>
+
+
+
