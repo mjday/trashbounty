@@ -3,7 +3,7 @@ require 'json'
 
 puts "Starting....."
 
-20.times do |i|
+10.times do |i|
   user_collector = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -13,7 +13,7 @@ puts "Starting....."
   )
 end
 
-20.times do |i|
+10.times do |i|
   user_bank = User.create!(
     email: Faker::Internet.email,
     password: "123456",
