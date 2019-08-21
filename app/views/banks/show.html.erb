@@ -16,6 +16,17 @@
               <hr>
               <table class="table table-borderless">
                 <tbody>
+
+                  <% if @bank.reviews.any? %>
+                  <tr class="mt-2">
+                    <th scope="row" class="px-0 pb-3 pt-2">
+                      <i class="fas fa-star-half-alt"></i>
+                    </th>
+                    <td class="pb-3 pt-2">
+                      Collectors Average Rating: <strong><%= @bank.average_rating %></strong> <i class="fas fa-star"></i></td>
+                    </tr>
+                    <% end %>
+
                   <tr>
                     <th scope="row" class="px-0 pb-3 pt-2">
                       <i class="fas fa-map-marker-alt living-coral-text"></i>
@@ -55,11 +66,6 @@
                         <td>$<%= plastic.price_per_kg %></td>
                       </tr>
                       <% end %>
-
-
-
-
-
                     </tbody>
                   </table>
                   <tr class="mt-2">
@@ -68,20 +74,24 @@
                     </th>
                     <td class="pb-3 pt-2">Products Accepted: <%= @bank.products_accepted %></td>
                   </tr>
-                  <% if @bank.reviews.any? %>
-                  <tr class="mt-2">
-                    <th scope="row" class="px-0 pb-3 pt-2">
-                      <i class="fas fa-star-half-alt"></i>
-                    </th>
-                    <td class="pb-3 pt-2">
-                      Average Rating: <%= @bank.average_rating %> <i class="fas fa-star"></i></td>
-                    </tr>
-                    <% end %>
+
                   </tbody>
                 </table>
               </div>
             </div>
           </div> <!-- card map-card-->
+
+<div class="m-2">
+
+      <% if @user.business == true %>
+        <%= link_to "Edit My Bank", edit_bank_path(@bank), class: "btn btn-secondary" %>
+
+        <% else %>
+
+        <% end %>
+</div>
+
+
           <h3>Recent reviews</h3>
           <% @reviews.each do |review| %>
           <div class="card-product">
@@ -105,12 +115,7 @@
       <div class="container">
 
 
-        <% if @user.business == true %>
-        <%= link_to "Edit", edit_bank_path(@bank) %>
 
-        <% else %>
-
-        <% end %>
         <!-- renders Collector Users Dashboard  -->
         <%= link_to "Search again", banks_path, class: "btn btn-lg btn-primary"  %>
 
