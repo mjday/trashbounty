@@ -3,15 +3,15 @@
 
     <!-- <%# qrcode = RQRCode::QRCode.new("https://20f3ae91.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %> -->
 
-    <% if Rails.env.production? %>
-      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
-    <% else %>
+    <% if Rails.env.development? %>
       <% qrcode = RQRCode::QRCode.new("https://efa08145.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+    <% else %>
+      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
     <% end %>
 
 
-          <%= "https://efa08145.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
-          <%= "https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
+    <%= "https://efa08145.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
+    <%= "https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
 
 
 
