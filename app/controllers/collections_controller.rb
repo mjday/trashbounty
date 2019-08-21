@@ -32,7 +32,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new(collection_params)
     @bank = Bank.find(params[:collection][:bank_id])
-    raise
+
     verification = Verification.find(params[:collection][:verification_id])
     @collection.bank = @bank
     @collection.verification = verification
