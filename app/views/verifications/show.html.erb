@@ -6,11 +6,6 @@
       <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
 
 
-    <%= "https://efa08145.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
-    <%= "https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id.to_s}" %>
-
-
-
 
     <% svg = qrcode.as_svg(
       offset: 0,
