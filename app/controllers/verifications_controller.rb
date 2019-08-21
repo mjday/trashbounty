@@ -9,7 +9,8 @@ class VerificationsController < ApplicationController
       date: @verification.date,
       total_amount: @verification.total_amount,
       total_kg: @verification.total_kg,
-      payment_type: @verification.payment_type)
+      payment_type: @verification.payment_type
+    )
   end
 
   def new
@@ -41,6 +42,7 @@ class VerificationsController < ApplicationController
     @verification.total_amount = sum.round(2)
     @verification.total_kg = kilo
 
+    @btc_price = @verification.total_amount * 105000
 
     if @verification.save
       redirect_to bank_verification_path(@bank, @verification)
@@ -51,7 +53,17 @@ class VerificationsController < ApplicationController
 
   private
 
+  # def get_btc_price
+  #   # current BTC price: $10,500
+  #   btc_price = @verification.total_amount * 105000
+  #   return btc_price
+  # end
+
   def verification_params
     params.require(:verification).permit(:date, :total_kg, :total_amount, :payment_type)
   end
 end
+
+
+
+

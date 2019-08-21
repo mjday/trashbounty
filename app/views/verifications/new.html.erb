@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row justify-content-center align-items-center">
     <div class="col-md-6 mt-3">
+
+      <!-- testing -->
+      <%# @users.each do |user| %>
+        <%#= user.bitcoin_address %>
+      <%#s end %>
+
       <%= simple_form_for [@bank, @verification] do |f| %>
        <%= f.input :date %>
 
@@ -13,6 +19,7 @@
         <% end %>
 
         <%= f.input :payment_type, collection: [ "Cash", "Bitcoin"] %>
+
 
         <%#= f.input :plastic, collection: @bank.plastics %>
 
