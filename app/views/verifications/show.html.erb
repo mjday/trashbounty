@@ -19,15 +19,31 @@
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-xs-12">
-            <%= image_tag "qrcode.svg", alt: "alttext" %>
 
+          <p>Total Amount Recycle Bank Must Pay to Collector: </p>
+         <!--  <p> $1.26 (0.0000723 BTC)</p> -->
+
+          <!-- from the Verifications Controller -->
+          <p>$<%= @verification.total_amount %></p>
+          <!-- get the price of bitcoin -->
+          <%= 105000 / @verification.total_amount %>
+
+
+          <!-- take the @verification.total_amount * 10,500 = btc_price -->
+
+
+          <hr>
+          <p>Collector must scan this to verify the details of the Collection</p>
+          <%= image_tag "qrcode.svg", alt: "alttext" %>
         </div>
       </div>
     </div>
 
   </div>
 
+<!-- AFTER QR CODE IS SCANNED BY COLLECTOR -->
   <div id="collector_view" class="<%= 'none' if current_user.business %>">
+    <h3>Confirm the Details </h3>
     <%= simple_form_for @collection do |f| %>
       <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
       <%= f.hidden_field :date, value: @verification.date %>
@@ -35,13 +51,14 @@
       <%= f.input :total_kg, disabled: true, input_html: { value: @verification.total_kg } %>
       <%= f.hidden_field :total_kg, value: @verification.total_kg %>
 
-      <%= f.input :total_amount, disabled: true, input_html: { value: @verification.total_amount } %>
+      <%= f.input :total_amount, disabled: true, hint: "= 0.0000723 BTC", input_html: {
+        value: @verification.total_amount } %>
+
       <%= f.hidden_field :total_amount, value: @verification.total_amount %>
 
       <%= f.input :payment_type, disabled: true, input_html: { value: @verification.payment_type } %>
       <%= f.hidden_field :payment_type, value: @verification.payment_type %>
       <%= f.hidden_field :verification_id, value: @verification.id %>
-
 
       <%= f.hidden_field :bank_id, value: @bank.id.to_i %>
 
