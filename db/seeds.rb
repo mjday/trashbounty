@@ -51,8 +51,10 @@ banks.first(10).each do |bank|
   end
 end
 
+ratings = [1, 2, 3, 4, 5]
+comments = ["Great, would recommend", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]
 types = ["Bitcoin", "Cash"]
-10.times do |i|
+30.times do |i|
   verification = Verification.create!(
     date: Date.today + rand(1..5),
     total_kg: rand(1..50),
@@ -69,16 +71,11 @@ types = ["Bitcoin", "Cash"]
   )
   collection.total_amount = collection.total_kg * rates.sample
   collection.save!
-end
-
-ratings = [1, 2, 3, 4, 5]
-comments = ["Great", "Good", "Okay", "Poor", "Terrible", "Could have been better", "Fast and efficient process", "Slow payment", "Superb, my favourite bank"]
-10.times do |i|
   review = Review.create!(
     rating: ratings.sample,
     comment: comments.sample,
-    collection: Collection.find(rand(1..10)),
-    user: User.find(rand(1..10))
+    collection: collection,
+    user: collection.user
   )
 end
 
