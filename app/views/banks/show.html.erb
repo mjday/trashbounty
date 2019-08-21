@@ -84,7 +84,7 @@
 <div class="m-2">
 
       <% if @user.business == true %>
-        <%= link_to "Edit My Bank", edit_bank_path(@bank), class: "btn btn-secondary" %>
+        <%= link_to "Edit My Bank", edit_bank_path(@bank), class: "btn btn-warning" %>
 
         <% else %>
 
@@ -100,11 +100,16 @@
            <% else %>
            <%= image_tag "default-avatar.png", class: "mr-3 avatar-bordered" %>
            <% end %>
-           <p> <%= @bank.user.username  %></p>
-           <div class="card-product-infos">
-            <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
-            <p><strong>Comment:</strong> <%= review.comment %></p>
-            <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
+           <p> <%= link_to review.user.username, leaderboard_path %></p>
+<!--            <%#= link_to leaderboard_path, @review.user.username %>
+ -->         <div class="card-product-infos d-flex row justify-content-around">
+                <div>
+                  <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
+                </div>
+            <div>
+              <p><strong>Comment:</strong> <%= review.comment %></p>
+              <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
+            </div>
 
           </div>
         </div>

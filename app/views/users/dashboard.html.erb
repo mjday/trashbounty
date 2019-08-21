@@ -74,7 +74,7 @@
                   </thead>
                   <tbody id='info'>
                     <% counter = 0 %>
-                    <% @collections.each do |collection| %>
+                    <% @collections.reverse.each do |collection| %>
                     <tr >
                       <td><%= link_to counter += 1, collection_path(collection.id) %></td>
                       <td class="data-date"><%= collection.date.strftime("%b %d, %Y") %></td>
