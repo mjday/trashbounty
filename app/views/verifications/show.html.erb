@@ -1,21 +1,41 @@
+<style>
+  table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+}
+
+td {
+  border-left: solid 10px #000;
+  padding: 0;
+  margin: 0;
+  width: 0px;
+  height: 10px;
+}
+
+td.black { border-color: #000; }
+td.white { border-color: #fff; }
+</style>
 <div class="container">
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
 
     <!-- <%# qrcode = RQRCode::QRCode.new("https://20f3ae91.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %> -->
 
-      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+      <%# qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
 
+<% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
 
-
-    <% svg = qrcode.as_svg(
+    <!-- <%# svg = qrcode.as_svg(
       offset: 0,
       color: '000',
       shape_rendering: 'crispEdges',
       module_size: 6
-    ) %>
+    ) %> -->
 
 
-    <% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %>
+    <!-- <%# IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), svg.to_s) %> -->
+
 
     <div class="container">
       <div class="row justify-content-center align-items-center">
@@ -29,13 +49,15 @@
           <!-- get the price of bitcoin -->
           <%#= 105000 / @verification.total_amount %>
 
+          <%= raw @qr.as_html %>
+
 
           <!-- take the @verification.total_amount * 10,500 = btc_price -->
 
 
           <hr>
           <p>Collector must scan this to verify the details of the Collection</p>
-          <%= image_tag "qrcode.svg", alt: "alttext" %>
+
         </div>
       </div>
     </div>
