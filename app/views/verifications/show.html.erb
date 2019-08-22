@@ -23,7 +23,7 @@ td.white { border-color: #fff; }
     <% if Rails.env.production? %>
       <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
     <% else %>
-      <% @qr = RQRCode::QRCode.new("https://a1d826cf.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
+      <% @qr = RQRCode::QRCode.new("https://a4bf5913.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
     <% end %>
 
     <div class="container">
