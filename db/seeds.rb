@@ -76,7 +76,7 @@ types = ["Bitcoin", "Cash"]
 100.times do |i|
   # make sure the amount of transactions is correct
   verification = Verification.create!(
-    date: Date.new(2019,8,17) + i,
+    date: Date.new(2019,5,10) + i,
     # new date attempt
     total_kg: rand(1..10),
     payment_type: types.sample,
