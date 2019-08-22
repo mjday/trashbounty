@@ -42,15 +42,16 @@
                 <div class="align-self-center">
                   <h4 class="card-title font-weight-bold mb-2 align-self-center text-primary">Hi, <%= @user.username %></h4>
 
-                  <p class="card-text text-primary"><%= link_to "Ranking:", leaderboard_path %> <%= @rank %></p>
+
+                  <p class="card-text text-primary"><%= link_to "Ranking:", leaderboard_path %> <%= @current_user_ranking %></p>
+
+
                 </div>
               </div>
 
           </div> <!-- End Profile Card -->
 
-          <div class="ml-5 mb-4">
 
-          </div>
 
           <div class="ml-2 mb-2">
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
@@ -98,7 +99,7 @@
           <div class="card chart-card">
             <!-- Card content -->
 
-            <div class="rm-padding card-body pb-0 d-flex justify-content-between">
+            <div class="rm-padding card-body pb-0 d-flex justify-content-around">
               <div class="d-flex flex-column">
                 <h5 class="text-center text-primary"><%# sum += collection.total_kg %><%= @sum %></h4>
                 <p class="text-center pb-2 text-primary">Collected (kg)</p>
