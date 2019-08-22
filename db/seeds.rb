@@ -3,7 +3,21 @@ require 'json'
 
 puts "Starting....."
 
-10.times do |i|
+1.times do |i|
+  main_collector = User.create!(
+    email: "komang@gmail.com",
+    password: "123456",
+    username: "komang",
+    phone_number: Faker::PhoneNumber.phone_number,
+    bitcoin_address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+    # btc address may still need to be defined
+  )
+end
+
+# can I do this above
+
+
+19.times do |i|
   user_collector = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -13,7 +27,7 @@ puts "Starting....."
   )
 end
 
-10.times do |i|
+400.times do |i|
   user_bank = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -21,6 +35,7 @@ end
     phone_number: Faker::PhoneNumber.phone_number,
     business: true,
     bitcoin_address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+    # btc address may still need to be randomised
   )
 end
 
@@ -32,7 +47,9 @@ banks = JSON.parse(serialized_banks)
 rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
 plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
 i = 0
-banks.first(10).each do |bank|
+# make sure the number is correct
+banks.first(400).each do |bank|
+  id = 21
   bk = Bank.create!(
     name: bank["name"],
     address: bank["address"],
@@ -40,7 +57,8 @@ banks.first(10).each do |bank|
     website: bank["website"],
     country: bank["country"],
     products_accepted: bank["products_accepted"],
-    user: User.find(rand(11..20)),
+    user: User.find(id),
+    # how to get all banks into the database with new users and business == true
   )
   plastic_type.each do |p|
     Plastic.create!(
@@ -49,23 +67,26 @@ banks.first(10).each do |bank|
       bank: bk
     )
   end
+  id += 1
 end
 
 ratings = [3, 4, 5]
 comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]
 types = ["Bitcoin", "Cash"]
-40.times do |i|
+100.times do |i|
+  # make sure the amount of transactions is correct
   verification = Verification.create!(
-    date: Date.today + rand(1..5),
-    total_kg: rand(1..50),
+    date: Date.new(2019,8,17) + rand(1..5),
+    # new date attempt
+    total_kg: rand(1..10),
     payment_type: types.sample,
-    bank: Bank.find(rand(Bank.first.id..Bank.count))
+    bank: Bank.all.sample
   )
   collection = Collection.new(
     date: verification.date,
     total_kg: verification.total_kg,
     payment_type: verification.payment_type,
-    user: User.find(rand(1..10)),
+    user: User.where(business: false).sample,
     bank: verification.bank,
     verification: verification
   )
