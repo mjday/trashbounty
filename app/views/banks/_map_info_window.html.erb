@@ -1,40 +1,39 @@
-<div class="info-window">
+<div class="info-window d-flex pt-2">
+  <div class="card d-flex" style="width: 18rem;">
+    <div class="d-flex">
+      <div class="map-card">
+        <img class="img-fluid" src="<%= asset_path('trashbounty-logo.png') %>" alt="Bank Image">
+      </div>
+      <div class="card-body map-card-body">
+        <h6 class="card-title text-primary map-title"><%= bank.name %></h6>
+        <% bank.average_rating%>
+        <% bank.average_rating.times do %>
+          <i class="y-star-card fas fa-star"></i>
+        <% end %>
+        <table class="table table-borderless map-table">
+          <tr>
+            <th scope="row">
+              <i class="fas fa-map-marker-alt text-primary mr-2"></i>
+            </th>
+            <td class="text-primary"><small><%= bank.address %></small></td>
+          </tr>
 
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="/images/icons/trashbounty-logo-192" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title"><%= bank.name %></h5>
-      <table>
-
-      </table>
-      <a href="#" class="btn btn-primary"><%= link_to "See more details", bank_path(bank) %></a>
+          <tr>
+            <th scope="row">
+              <i class="fas fa-phone text-primary mr-2"></i>
+            </th>
+            <td class="text-primary"><small><%= bank.phone_number %></small></td>
+          </tr>
+        </table>
+        <div class="text-center mt-3">
+          <%= link_to "See more details", bank_path(bank), class: "btn btn-primary"  %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 
 
-  <!-- <p><%= bank.name %></p> -->
 
 
-  <p><%= bank.name %></p>
-    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="50%">
-
-        <thead>
-          <tr>
-            <th class="th-sm">Avg Rating</th>
-              <th class="th-sm">Avg price per KG</th>
-            </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <% if bank.reviews.any? %>
-            <td><%= bank.average_rating%> <i class="fas fa-star"></td>
-                  <% end %>
-            <% if bank.plastics.present? %>
-            <td>$<%= bank.average_price%></td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
-    <p><%= link_to "See more details", bank_path(bank) %></p> -->
