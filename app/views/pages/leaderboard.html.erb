@@ -9,8 +9,7 @@
         <thead>
           <tr>
             <th class="th-sm text-center">Rank</th>
-<!--             <th class="th-sm">User ID</th>
- -->            <th class="th-sm text-center">Username</th>
+            <th class="th-sm text-center">Username</th>
             <th class="th-sm text-center">Total Kg</th>
           </tr>
         </thead>
@@ -19,6 +18,7 @@
           <% @users.each do |user| %>
           <tr>
             <% if user.name == current_user.username %>
+              <% @rank = counter += 1 %>
               <td class="td-active text-white"><%= counter += 1 %></td>
               <td class="td-active text-white"><%= user.name %></td>
               <td class="td-active text-white"><%= user.tot_kg %></td>
@@ -31,6 +31,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= @rank %>
      </div>
   </div>
 </div>

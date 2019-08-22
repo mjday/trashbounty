@@ -1,13 +1,20 @@
- <div class ="pt-1 banner-footer">
-  <div class="d-flex justify-content-around footer-links">
-      <%= link_to root_path, class: 'mr-3' do %>
-      <i class="fas fa-qrcode"></i>
-      <% end %>
-    <%= link_to banks_path, class: 'mr-3' do %>
-      <i class="fas fa-search"></i>
-      <% end %>
-    <%= link_to users_dashboard_path, class: 'mr-3' do %>
-      <i class="fas fa-address-card"></i>
-    <% end %>
+<div class="sticky-bottom">
+  <ul class="d-flex footer justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#"><i class="fab fa-facebook-square sm-icons"></i></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><i class="fab fa-twitter-square sm-icons"></i></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><i class="fab fa-github-square sm-icons"></i></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><i class="fab fa-youtube-square sm-icons"></i></a>
+    </li>
+  </ul>
+
+  <div>
+      <small class="d-block text-center mb-3 text-primary">&copy; <%= Time.now.strftime("%Y") %> Trash Bounty</small>
   </div>
 </div>

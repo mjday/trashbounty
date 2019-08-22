@@ -1,131 +1,87 @@
 <!-- <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"style="height: calc(50vh - 50px); width: 100vw"></div> -->
 
-<div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-xs-12">
+
 
       <div id="map_show" class="mb-3" style="height: calc(50vh - 50px); width: 100vw" data-marker="<%= @marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
       <!-- Card -->
       <div class="container">
-        <div class="card map-card">
-          <!-- Card content -->
-          <div class="card-body closed px-0">
-            <div class="white px-4 pb-4 pt-3-5">
-              <h5 class="card-title h5 living-coral-text"><%= @bank.name %></h5>
-              <hr>
-              <table class="table table-borderless">
-                <tbody>
+        <h4 class="card-title text-primary"><%= @bank.name %></h4>
+        <% @bank.average_rating.times do %>
+         <i class="y-star fas fa-star"></i>
+        <% end %>
 
-                  <% if @bank.reviews.any? %>
-                  <tr class="mt-2">
-                    <th scope="row" class="px-0 pb-3 pt-2">
-                      <i class="fas fa-star-half-alt"></i>
-                    </th>
-                    <td class="pb-3 pt-2">
-                      Collectors Average Rating: <strong><%= @bank.average_rating %></strong> <i class="fas fa-star"></i></td>
-                    </tr>
-                    <% end %>
+        <hr>
+        <!-- Info Table -->
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row" class="px-0 pb-3 pt-2">
+                <i class="fas fa-map-marker-alt text-primary"></i>
+              </th>
+              <td class="pb-3 pt-2 text-primary"><%= @bank.address %></td>
+            </tr>
+            <tr class="mt-2">
+              <th scope="row" class="px-0 pb-3 pt-2">
+                <i class="far fa-clock text-primary"></i>
+              </th>
+              <td class="pb-3 pt-2 text-primary">Hours of Operations</td>
+            </tr>
+            <tr class="mt-2">
+              <th scope="row" class="px-0 pb-3 pt-2">
+                <i class="fas fa-phone text-primary"></i>
+              </th>
+              <td class="pb-3 pt-2 text-primary"><%= @bank.phone_number %></td>
+            </tr>
+          </tbody>
+        </table>
 
-                  <tr>
-                    <th scope="row" class="px-0 pb-3 pt-2">
-                      <i class="fas fa-map-marker-alt living-coral-text"></i>
-                    </th>
-                    <td class="pb-3 pt-2"><%= @bank.address %></td>
-                  </tr>
-                  <tr class="mt-2">
-                    <th scope="row" class="px-0 pb-3 pt-2">
-                      <i class="far fa-clock living-coral-text"></i>
-                    </th>
-                    <td class="pb-3 pt-2"><span class="deep-purple-text mr-2">Hours of Operations</td>
-                    </tr>
-                    <tr class="mt-2">
-                      <th scope="row" class="px-0 pb-3 pt-2">
-                        <i class="fas fa-cloud-moon living-coral-text"></i>
-                      </th>
-                      <td class="pb-3 pt-2"><%= @bank.phone_number %></td>
-                    </tr>
-                    <tr class="mt-2">
-                      <th scope="row" class="px-0 pb-3 pt-2">
-                        <i class="fas fa-cloud-moon living-coral-text"></i>
-                      </th>
-                      <td class="pb-3 pt-2">Plastics accepted:
-                      </td>
-                    </tr>
-                    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="50%">
-                      <thead>
-                        <tr>
-                          <th class="th-sm">Type</th>
-                          <th class="th-sm">Price per KG</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                       <% @plastics.each do |plastic| %>
-                       <tr>
-                        <td><%= plastic.name %></td>
-                        <td>$<%= plastic.price_per_kg %></td>
-                      </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                  <tr class="mt-2">
-                    <th scope="row" class="px-0 pb-3 pt-2">
-                      <i class="fas fa-cloud-moon living-coral-text"></i>
-                    </th>
-                    <td class="pb-3 pt-2">Products Accepted: <%= @bank.products_accepted %></td>
-                  </tr>
+          <!-- Price Table -->
+        <h5 class="text-primary mb-3">Prices:</h5>
+        <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="50%">
+          <thead>
+            <tr>
+              <th class="th-sm">Type</th>
+              <th class="th-sm">Price per KG</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @plastics.each do |plastic| %>
+            <tr>
+              <td><%= plastic.name %></td>
+              <td>$<%= plastic.price_per_kg %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
 
-                  </tbody>
-                </table>
+        <h4 class="text-primary">Recent reviews</h4>
+        <% @reviews.each do |review| %>
+          <div class="card-product d-flex">
+            <div>
+              <% if @user.photo? %>
+               <%= cl_image_tag @user.photo.url(:thumb), class: "avatar-bordered img-fluid ml-2" %>
+              <% else %>
+               <%= image_tag "default-avatar.png", class: "avatar-bordered img-fluid" %>
+              <% end %>
+            </div>
+            <div class="card-product-infos d-flex row justify-content-around ml-2">
+              <div>
+                <% review.rating.times do %>
+                  <i class="y-star fas fa-star"></i>
+                <% end %>
+              </div>
+              <div class="ml-2">
+                <p><strong>Comment:</strong> "<%= review.comment %>"</p>
+                <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
               </div>
             </div>
-          </div> <!-- card map-card-->
-
-<div class="m-2">
-
-      <% if @user.business == true %>
-        <%= link_to "Edit My Bank", edit_bank_path(@bank), class: "btn btn-warning" %>
-
-        <% else %>
-
-        <% end %>
-</div>
-
-
-          <h3>Recent reviews</h3>
-          <% @reviews.each do |review| %>
-          <div class="card-product">
-           <% if @user.photo? %>
-           <%= cl_image_tag @user.photo.url(:thumb) %>
-           <% else %>
-           <%= image_tag "default-avatar.png", class: "mr-3 avatar-bordered" %>
-           <% end %>
-           <p> <%= link_to review.user.username, leaderboard_path %></p>
-<!--            <%#= link_to leaderboard_path, @review.user.username %>
- -->         <div class="card-product-infos d-flex row justify-content-around">
-                <div>
-                  <h2><%= review.rating %> <i class="fas fa-star"></i></h2>
-                </div>
-            <div>
-              <p><strong>Comment:</strong> "<%= review.comment %>"</p>
-              <p><strong>Date:</strong> <%= review.collection.date.strftime("%b %d, %Y") %></p>
-            </div>
-
           </div>
-        </div>
         <% end %>
-      </div> <!-- container -->
-
-
-      <div class="container">
-
-
-
-        <!-- renders Collector Users Dashboard  -->
-        <%= link_to "Search again", banks_path, class: "btn btn-lg btn-primary"  %>
-
-
-
+        <div class="text-center mt-3 mb-5">
+          <%= link_to "Search again", banks_path, class: "btn btn-lg btn-primary"  %>
+        </div>
       </div>
-    </div>
-  </div>
+
+
+
