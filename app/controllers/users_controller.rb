@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @collections = Collection.where(user: @user).order('date asc')
     @verifications = Collection.where(bank_id: @user.bank.id) if @user.business
     users = User.joins(:collections).group('users.id').select("users.id AS id, users.username AS name, SUM(collections.total_kg) as tot_kg").order("tot_kg DESC")
-    @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1
+    @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @user.business == false
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
     @cash = cash_total
