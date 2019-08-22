@@ -27,7 +27,15 @@ end
   )
 end
 
-400.times do |i|
+
+filepath = File.join(Rails.root, 'seeds.json')
+serialized_banks = File.read(filepath)
+banks = JSON.parse(serialized_banks)
+  rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
+  plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
+  # i = 0
+
+banks.each do |bank|
   user_bank = User.create!(
     email: Faker::Internet.email,
     password: "123456",
@@ -37,38 +45,33 @@ end
     bitcoin_address: "n1GZnGFGszuyt6rL2nbJLo9yY635drJAFR"
     # btc address may still need to be randomised
   )
-end
 
-filepath = File.join(Rails.root, 'seeds.json')
-serialized_banks = File.read(filepath)
 
-banks = JSON.parse(serialized_banks)
-
-rates = [0.35, 0.3, 0.25, 0.2, 0.15, 0.27, 0.18, 0.22, 0.32 ]
-plastic_type = [ "PET", "HDPE", "LDPE", "PP" ]
-i = 0
-# make sure the number is correct
-banks.first(400).each do |bank|
-  id = 21
-  bk = Bank.create!(
-    name: bank["name"],
-    address: bank["address"],
-    phone_number: bank["phone_number"],
-    website: bank["website"],
-    country: bank["country"],
-    products_accepted: bank["products_accepted"],
-    user: User.find(id),
-    # how to get all banks into the database with new users and business == true
-  )
-  plastic_type.each do |p|
-    Plastic.create!(
-      name: p,
-      price_per_kg: rates.sample,
-      bank: bk
+  # make sure the number is correct
+    bk = Bank.create!(
+      name: bank["name"],
+      address: bank["address"],
+      phone_number: bank["phone_number"],
+      website: bank["website"],
+      country: bank["country"],
+      products_accepted: bank["products_accepted"],
+      user: user_bank,
+      latitude: bank["latitude"],
+      longitude: bank["longitude"]
+      # how to get all banks into the database with new users and business == true
+    )
+    puts bank["latitude"]
+    puts bank["longitude"]
+    plastic_type.each do |p|
+      Plastic.create!(
+        name: p,
+        price_per_kg: rates.sample,
+        bank: bk
     )
   end
-  id += 1
 end
+
+
 
 ratings = [3, 4, 5]
 comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]
