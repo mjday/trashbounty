@@ -10,12 +10,8 @@ puts "Starting....."
     username: "Komang",
     phone_number: Faker::PhoneNumber.phone_number,
     bitcoin_address: "n4ZGR4MV4JhwSXjqoWREWnJVNRsje2EdiP"
-    # btc address may still need to be defined
   )
 end
-
-# can I do this above
-
 
 19.times do |i|
   user_collector = User.create!(
@@ -26,7 +22,6 @@ end
     bitcoin_address: "n3mBTZS2goGk4MLi5NE96oEFzc5wrS9HVe"
   )
 end
-
 
 filepath = File.join(Rails.root, 'seeds.json')
 serialized_banks = File.read(filepath)
@@ -45,7 +40,6 @@ banks.each do |bank|
     bitcoin_address: "n1GZnGFGszuyt6rL2nbJLo9yY635drJAFR"
     # btc address may still need to be randomised
   )
-
 
   # make sure the number is correct
     bk = Bank.create!(
@@ -70,8 +64,6 @@ banks.each do |bank|
     )
   end
 end
-
-
 
 ratings = [3, 4, 5]
 comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]

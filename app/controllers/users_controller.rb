@@ -2,12 +2,19 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @collections = Collection.where(user: @user).order('date asc')
+
+    @crypto_datas = @user.get_crypto_data
+
     @verifications = Collection.where(bank_id: @user.bank.id) if @user.business
     users = User.joins(:collections).group('users.id').select("users.id AS id, users.username AS name, SUM(collections.total_kg) as tot_kg").order("tot_kg DESC")
     @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @user.business == false
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
     @cash = cash_total
+
+    # when user signs up, if they don't already have a Bitcoin address, this breaks
+    # bitcoin_address: nil
+    return @qr = RQRCode::QRCode.new(@user.bitcoin_address, size: 4, level: :h) if @user.bitcoin_address != nil
   end
 
   def get_total_kg
@@ -33,4 +40,5 @@ class UsersController < ApplicationController
   def camera
     @user = current_user
   end
+
 end

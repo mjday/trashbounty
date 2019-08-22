@@ -44,6 +44,7 @@ class CollectionsController < ApplicationController
     # else
     #   render 'new'
     # end
+
   end
 
   def user_ranking
