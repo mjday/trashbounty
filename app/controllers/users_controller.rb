@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     # raise
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
+    @qr = RQRCode::QRCode.new(@user.bitcoin_address, size: 4, level: :h)
   end
 
   def get_total_kg

@@ -1,3 +1,20 @@
+<style>
+  table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  }
+  td {
+    border-left: solid 10px #000;
+    padding: 0;
+    margin: 0;
+    width: 0px;
+    height: 10px;
+    }
+  td.black { border-color: #000; }
+  td.white { border-color: #fff; }
+</style>
 <!-- Users will have different Dashboard views -->
 
 <!-- renders Collector Users Dashboard  -->
@@ -31,9 +48,14 @@
           <div class="ml-5 mb-4">
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
-            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i><%= @user.bitcoin_address%></p>
+            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
+              <%= @user.bitcoin_address%>
+            </p>
 
-              <!-- Button trigger modal -->
+              <%# @qr = RQRCode::QRCode.new(@user.bitcoin_address, size: 10, level: :h) %>
+
+              <br>
+              <!-- Trigger the Modal -->
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Bitcoin button image
               </button>
@@ -43,34 +65,21 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">My Bitcoin Address <%= @user.bitcoin_address %></h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                      <h5 class="modal-title" id="exampleModalLabel">My Bitcoin Address
+                        <strong> <%= @user.bitcoin_address %> </strong></h5>
                     </div>
+
                     <!-- MODAL BODY -->
-                    <div class="modal-body">
-                      <!-- Block Cypher -->
-                      <%# btc_address = @user.bitcoin_address %>
+                      <div class="modal-body">
+                        <%= raw @qr.as_html %>
+                        <% if @user.bitcoin_address %>
+                          <%= @user.get_crypto_data %>
+                        <% end %>
+                      </div>
+                      <!-- END MODAL BODY -->
 
-
-                        <!-- TESTING -->
-
-                         <% if @user.bitcoin_address %>
-                            <%= @user.get_crypto_data %>
-                         <% end %>
-
-                         <% url = "https://live.blockcypher.com/widget/btc-testnet/#{@user.bitcoin_address}/balance" %>
-                      <iframe src="<%= url %>" class="block-cypher" style="overflow:hidden;" frameborder="0"></iframe>
-
-
-                        <!-- TESTING -->
-
-
-                    </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                 </div>

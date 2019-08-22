@@ -9,7 +9,7 @@ puts "Starting....."
     password: "123456",
     username: Faker::Name.first_name,
     phone_number: Faker::PhoneNumber.phone_number,
-    bitcoin_address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+    bitcoin_address: "n3mBTZS2goGk4MLi5NE96oEFzc5wrS9HVe"
   )
 end
 
@@ -20,7 +20,7 @@ end
     username: Faker::Name.first_name,
     phone_number: Faker::PhoneNumber.phone_number,
     business: true,
-    bitcoin_address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+    bitcoin_address: "n1GZnGFGszuyt6rL2nbJLo9yY635drJAFR"
   )
 end
 
