@@ -138,6 +138,7 @@
                       <th class="th-sm">#</th>
                       <th class="th-sm">My Recycle Center</th>
                       <th class="th-sm">Verify</th>
+                      <th class="th-sm">Delete it</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -150,8 +151,13 @@
                     <td class="text-center">
                       <%= link_to new_bank_verification_path(bank) do %>
                         <i class="fas fa-qrcode"></i>
-                          <!-- new_bank_verification
+                        <% end %>
+                        <!-- new_bank_verification
                           GET  /banks/:bank_id/verifications/new -->
+                      </td>
+                    <td class="text-center">
+                      <%= link_to bank_path(bank), data: { confirm: "Are you sure?" }, method: :delete do%>
+                        <i class="fas fa-trash-alt"></i>
                       <% end %>
                     </td>
                   </tr>

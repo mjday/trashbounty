@@ -56,6 +56,7 @@ class BanksController < ApplicationController
 
   def destroy
     @bank.destroy
+    redirect_to users_dashboard_path
   end
 
   private
