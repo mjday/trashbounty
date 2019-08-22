@@ -71,8 +71,8 @@
 
                     <!-- MODAL BODY -->
                       <div class="modal-body">
-                        <%= raw @qr.as_html %>
                         <% if @user.bitcoin_address %>
+                          <%= raw @qr.as_html %>
                           <%= @user.get_crypto_data %>
                         <% end %>
                       </div>
