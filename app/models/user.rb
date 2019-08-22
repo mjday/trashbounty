@@ -17,16 +17,17 @@ class User < ApplicationRecord
 
     return "No previous transactions" if tx.nil?
 
-    # arr = []
-    transaction = tx["txid"]
-    amount = tx["amounts_received"][0]["amount"]
-    recipient = tx["amounts_received"][0]["recipient"]
-    sender = tx["senders"][0]
+    arr = []
+    arr << transaction = tx["txid"]
+    arr << amount = tx["amounts_received"][0]["amount"]
+    arr << recipient = tx["amounts_received"][0]["recipient"]
+    arr << sender = tx["senders"][0]
+    arr << conf = tx["confirmations"]
 
-    # return arr
+    return arr
 
     # complete_tx = "TX Hash: #{transaction}" + "(Recycle Bank) #{sender} sent: " + "Amount: #{amount} to: " + "Recipient: #{recipient}"
-    return "TX ID: #{transaction} #{amount} BTC - From (Recycle Bank): #{sender}  | To: #{recipient}  "
+    # return "TX ID: #{transaction} \n #{amount} BTC - From (Recycle Bank): #{sender}  | To: #{recipient}  "
 
     # return {
     #   transaction: tx["txid"],
