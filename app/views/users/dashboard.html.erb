@@ -50,15 +50,10 @@
           <div class="ml-2 mb-2">
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
-            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i><%= @user.bitcoin_address%> <small class="text-primary text-center" data-toggle="modal" data-target="#exampleModal">(See details)</small>
-              </p>
-
-
-
-              <!-- Trigger the Modal -->
-             <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                details
-              </button> -->
+            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
+              <%= @user.bitcoin_address %>
+              <small class="text-primary text-center" data-toggle="modal" data-target="#exampleModal">(See details)</small>
+            </p>
 
               <!-- Trigger the Modal -->
 
@@ -79,7 +74,7 @@
                             <% @user.get_crypto_data %>
                             <p><b>Confirmations: </b> <%= @user.get_crypto_data[4] %></p>
                             <p><b>TX ID: </b><%= @user.get_crypto_data[0] %></p>
-                            <p><b>Amount: </b><%= @user.get_crypto_data[1] %></p>
+                            <p><b>Amount: </b><%= @user.get_crypto_data[1] %> BTC</p>
                             <p><b>Sender: </b><%= @user.get_crypto_data[3] %></p>
                             <p><b>Receiver: </b><%= @user.get_crypto_data[2] %></p>
                           </div>
