@@ -52,7 +52,7 @@
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
             <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
               <%= @user.bitcoin_address %>
-              <small class="text-primary text-center" data-toggle="modal" data-target="#exampleModal">(See details)</small>
+              <small class="text-wrap text-primary text-center" data-toggle="modal" data-target="#exampleModal">(See details)</small>
             </p>
 
               <!-- Trigger the Modal -->
@@ -62,7 +62,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title text-primary" id="exampleModalLabel" >My Bitcoin Address
+                      <h5 class="text-wrap modal-title text-primary" id="exampleModalLabel" >My Bitcoin Address
                         <strong> <%= @user.bitcoin_address %> </strong></h5>
                     </div>
 
@@ -74,7 +74,7 @@
                             <% @user.get_crypto_data %>
                             <p><b>Confirmations: </b> <%= @user.get_crypto_data[4] %></p>
                             <p><b>TX ID: </b><%= @user.get_crypto_data[0] %></p>
-                            <p><b>Amount: </b><%= @user.get_crypto_data[1] %> BTC</p>
+                            <p><b>Amount: +</b><%= @user.get_crypto_data[1] %> BTC</p>
                             <p><b>Sender: </b><%= @user.get_crypto_data[3] %></p>
                             <p><b>Receiver: </b><%= @user.get_crypto_data[2] %></p>
                           </div>
