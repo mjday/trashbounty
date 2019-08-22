@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @collections = Collection.where(user: @user).order('date asc')
+    @verifications = Collection.where(bank_id: @user.bank.id)
     # raise
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
