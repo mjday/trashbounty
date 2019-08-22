@@ -2,7 +2,7 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
-    @banks = Bank.geocoded
+    @banks = Bank.where.not(latitude: nil, longitude: nil)
     if params[:query].present?
       @banks = @banks.near(params[:query], 500)
     else
