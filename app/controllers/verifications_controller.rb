@@ -18,15 +18,13 @@ class VerificationsController < ApplicationController
     @verification = Verification.new
     @bank.plastics
     @collected_plastics = @verification.collected_plastics.build
+    @verification.btc_price
   end
 
   def create
     @bank = Bank.find(params[:bank_id])
     @bank.plastics
-    # plastic = Plastic.find(params[:verification][:plastic])
     @verification = Verification.new(verification_params)
-    # @verification.plastic = plastic
-    # @verification.total_amount = plastic.price_per_kg * @verification.total_kg
 
     @verification.bank = @bank
 
@@ -42,7 +40,8 @@ class VerificationsController < ApplicationController
     @verification.total_amount = sum.round(2)
     @verification.total_kg = kilo
 
-    @btc_price = @verification.total_amount * 105000
+    @verification.payment_type
+    @verification.btc_price
 
     if @verification.save
       redirect_to bank_verification_path(@bank, @verification)
@@ -52,12 +51,6 @@ class VerificationsController < ApplicationController
   end
 
   private
-
-  # def get_btc_price
-  #   # current BTC price: $10,500
-  #   btc_price = @verification.total_amount * 105000
-  #   return btc_price
-  # end
 
   def verification_params
     params.require(:verification).permit(:date, :total_kg, :total_amount, :payment_type)

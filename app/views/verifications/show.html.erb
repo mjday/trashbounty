@@ -23,44 +23,59 @@ td.white { border-color: #fff; }
     <% if Rails.env.production? %>
       <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
     <% else %>
-      <% @qr = RQRCode::QRCode.new("https://a8373282.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
+      <% @qr = RQRCode::QRCode.new("https://a1d826cf.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
     <% end %>
-
-    <%# @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
 
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-xs-12">
 
-          <p>Total Amount Recycle Bank Must Pay to Collector: </p>
-         <!--  <p> $1.26 (0.0000723 BTC)</p> -->
-          <!-- from the Verifications Controller -->
-          <p>$<%#= @verification.total_amount %></p>
-          <!-- get the price of bitcoin -->
-          <%#= 105000 / @verification.total_amount %>
+          <p><strong>Collector must scan this to verify the details of the Collection</strong><br>
+            Total Payment Amount to Collector: $<%= @verification.total_amount %></p>
+          <p>Payment Type: <%= @verification.payment_type %></p>
+
+
+          <!-- BLOCK_IO_API_KEY_2 -->
+
+          <% if @verification.payment_type == "Bitcoin" %>
+            <% @satoshi = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
+            <p><%= @satoshi %></p>
+          <% else %>
+            <%  %>
+          <% end %>
+
           <%= raw @qr.as_html %>
-          <!-- take the @verification.total_amount * 10,500 = btc_price -->
+
           <hr>
-          <p>Collector must scan this to verify the details of the Collection</p>
+
         </div>
       </div>
     </div>
   </div> <!-- end Business View -->
 
 <!-- AFTER QR CODE IS SCANNED BY COLLECTOR -->
-<!-- class="<%#= 'none' if current_user.business %>"> -->
   <div id="collector_view" class="<%= 'none' if current_user.business %>">
 
     <h3>Confirm the Details </h3>
     <%= simple_form_for @collection do |f| %>
+
+      <% if @verification.payment_type == "Bitcoin" %>
+            <% @satoshi_2 = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
+            <p><%= @satoshi_2 %></p>
+          <% else %>
+            <%  %>
+          <% end %>
+
       <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
       <%= f.hidden_field :date, value: @verification.date %>
 
       <%= f.input :total_kg, disabled: true, input_html: { value: @verification.total_kg } %>
       <%= f.hidden_field :total_kg, value: @verification.total_kg %>
 
-      <%= f.input :total_amount, disabled: true, input_html: {
-        value: @verification.total_amount } %>
+      <%= f.input :total_amount, disabled: true,
+      input_html: { value: @verification.total_amount },
+       hint: "#{@satoshi} BTC" %>
+
 
       <%= f.hidden_field :total_amount, value: @verification.total_amount %>
 
@@ -69,6 +84,7 @@ td.white { border-color: #fff; }
       <%= f.hidden_field :verification_id, value: @verification.id %>
 
       <%= f.hidden_field :bank_id, value: @bank.id.to_i %>
+
 
       <%= f.submit 'Accept', class: 'btn btn-primary' %>
       <%= link_to 'Reject', users_dashboard_path %>
