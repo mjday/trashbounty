@@ -8,7 +8,6 @@
       <%#s end %>
 
       <%= simple_form_for [@bank, @verification] do |f| %>
-       <%= f.input :date %>
 
         <% @bank.plastics.each do |plastic| %>
           <%= f.fields_for :collected_plastics do |cp| %>

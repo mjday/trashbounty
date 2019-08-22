@@ -1,13 +1,11 @@
-<h2>Collection ID: <%= @collection.id %></h2>
+   <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-xs-12 col-md-12 col-12">
+
+<h2 class="display-4 text-primary my-3">Collection:</h2>
+
 
 <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th class="th-sm"></th>
-      <th class="th-sm"></th>
-    </tr>
-  </thead>
-  <tbody>
     <tr>
       <th class="th-sm">Date</th>
       <td><%= @collection.date.strftime("%b %d, %Y") %></td>
@@ -29,11 +27,6 @@
     </tr>
 
     <tr>
-      <th class="th-sm">Recycle Bank</th>
-      <td><%= @collection.bank.name %></td>
-    </tr>
-
-    <tr>
       <th class="th-sm">Website</th>
       <td><%= @collection.bank.website %></td>
     </tr>
@@ -47,18 +40,30 @@
       <th class="th-sm">Country</th>
       <td><%= @collection.bank.country %></td>
     </tr>
-
-</tbody>
 </table>
 
 
-<% unless current_user.reviews.find_by(user: current_user) %>
+<% unless current_user.reviews.find_by(collection: @collection) %>
 <h3>Add a review of this collection, and your experience with this Recycling bank</h3>
         <%= render 'reviews/form' %>
         <% else %>
-<%= current_user.reviews.find_by(user: current_user).rating %>
+
+
+        <div class="d-flex flex-column mt-4">
+          <h4 class="text-primary">Review:</h4>
+            <div class="d-flex mt-3">
+              <p>
+                <% current_user.reviews.find_by(user: current_user).rating.times do %>
+                  <i class="y-star fas fa-star"></i>
+                <% end %>
+                </p>
+              <p class="ml-3 text-primary"><%= current_user.reviews.find_by(user: current_user).comment %></p>
+            </div>
+        </div>
 
 <% end %>
 
 
-
+      </div> <!-- end col-xs-12 -->
+      </div> <!-- end row -->
+    </div>

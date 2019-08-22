@@ -12,6 +12,7 @@ class PagesController < ApplicationController
         image_url: helpers.asset_url('trashbounty-logo.png')
       }
     end
+    @sum = total_kg
   end
 
   def help

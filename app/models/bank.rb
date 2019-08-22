@@ -1,6 +1,6 @@
 class Bank < ApplicationRecord
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  # geocoded_by :address
+  # after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :user
   # added optional true to allow me to test banks in the terminal
   has_many :collections
@@ -15,6 +15,7 @@ class Bank < ApplicationRecord
   def average_rating
     rating_array = self.reviews.pluck(:rating)
     sum = rating_array.reduce(:+)
+    return 0 if !sum
     sum /= rating_array.count
     return sum.round(2)
   end
@@ -22,6 +23,7 @@ class Bank < ApplicationRecord
   def average_price
     price_array = self.plastics.pluck(:price_per_kg)
     sum = price_array.reduce(:+)
+    return 0 if !sum
     sum /= price_array.count
     return sum.round(2)
   end

@@ -25,7 +25,7 @@ class VerificationsController < ApplicationController
     @bank = Bank.find(params[:bank_id])
     @bank.plastics
     @verification = Verification.new(verification_params)
-
+    @verification.date = Date.today
     @verification.bank = @bank
 
     sum = 0.0

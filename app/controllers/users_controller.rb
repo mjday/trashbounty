@@ -2,11 +2,15 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @collections = Collection.where(user: @user).order('date asc')
+
     @crypto_datas = @user.get_crypto_data
+
+    @verifications = Collection.where(bank_id: @user.bank.id) if @user.business
+    users = User.joins(:collections).group('users.id').select("users.id AS id, users.username AS name, SUM(collections.total_kg) as tot_kg").order("tot_kg DESC")
+    @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @user.business == false
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
-    @verification = Verification.where(user: @user)
-
+    @cash = cash_total
 
     # when user signs up, if they don't already have a Bitcoin address, this breaks
     # bitcoin_address: nil
@@ -19,6 +23,16 @@ class UsersController < ApplicationController
     sum = 0.0
     @user.collections.each do |collection|
       sum += collection.total_kg
+    end
+    sum
+  end
+
+    def cash_total
+    @user = current_user
+    @collections = Collection.where(user: @user)
+    sum = 0.0
+    @user.collections.each do |collection|
+      sum += collection.total_amount
     end
     sum
   end
