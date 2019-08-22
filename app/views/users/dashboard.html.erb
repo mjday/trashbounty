@@ -50,30 +50,45 @@
           <div class="ml-2 mb-2">
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
-            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
-              <%= @user.bitcoin_address%>
-            </p>
+            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i><%= @user.bitcoin_address%> <small class="text-primary text-center" data-toggle="modal" data-target="#exampleModal">(See details)</small>
+              </p>
 
-              <br>
+
+
               <!-- Trigger the Modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Bitcoin button image
-              </button>
+             <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                details
+              </button> -->
+
+              <!-- Trigger the Modal -->
 
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">My Bitcoin Address
+                      <h5 class="modal-title text-primary" id="exampleModalLabel" >My Bitcoin Address
                         <strong> <%= @user.bitcoin_address %> </strong></h5>
                     </div>
 
                     <!-- MODAL BODY -->
                       <div class="modal-body">
                         <% if @user.bitcoin_address %>
-                          <%= raw @qr.as_html %>
-                          <%= @user.get_crypto_data %>
+                          <!-- Transaction info -->
+                          <div class="container mb-3 text-primary">
+                            <% @user.get_crypto_data %>
+                            <p><b>Confirmations: </b> <%= @user.get_crypto_data[4] %></p>
+                            <p><b>TX ID: </b><%= @user.get_crypto_data[0] %></p>
+                            <p><b>Amount: </b><%= @user.get_crypto_data[1] %></p>
+                            <p><b>Sender: </b><%= @user.get_crypto_data[3] %></p>
+                            <p><b>Receiver: </b><%= @user.get_crypto_data[2] %></p>
+                          </div>
+                          <div class="container ">
+                            <div class="row justify-content-center align-items-center">
+                            <!-- Receiving address QR code -->
+                              <%= raw @qr.as_html %>
+                            </div>
+                          </div>
                         <% end %>
                       </div>
                       <!-- END MODAL BODY -->
