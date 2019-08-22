@@ -27,7 +27,7 @@ class VerificationsController < ApplicationController
     @verification = Verification.new(verification_params)
     # @verification.plastic = plastic
     # @verification.total_amount = plastic.price_per_kg * @verification.total_kg
-
+    @verification.date = Date.today
     @verification.bank = @bank
 
     sum = 0.0
