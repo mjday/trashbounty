@@ -51,8 +51,12 @@
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
             <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
-              <%= @user.bitcoin_address %>    <i class="fas fa-qrcode" data-toggle="modal" data-target="#exampleModal"></i>
+              <%= @user.bitcoin_address %>
+              <button style="background-color:white;" data-toggle="modal" data-target="#exampleModal">
+               <i class="fas fa-qrcode" style="font-size:20px; color:black;"></i>
+              </button>
             </p>
+
 
               <!-- Trigger the Modal -->
 
