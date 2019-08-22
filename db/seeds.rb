@@ -54,7 +54,7 @@ end
 ratings = [3, 4, 5]
 comments = ["Great, would recommend", "Good", "Okay", "Could have been better", "Fast and efficient process", "Good, but slow payment", "Superb, my favourite bank"]
 types = ["Bitcoin", "Cash"]
-30.times do |i|
+40.times do |i|
   verification = Verification.create!(
     date: Date.today + rand(1..5),
     total_kg: rand(1..50),
