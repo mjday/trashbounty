@@ -30,19 +30,20 @@ td.white { border-color: #fff; }
       <div class="row justify-content-center align-items-center">
         <div class="col-xs-12">
 
-          <p><strong>Collector must scan this to verify the details of the Collection</strong><br>
-            Total Payment Amount to Collector: $<%= @verification.total_amount %></p>
-          <p>Payment Type: <%= @verification.payment_type %></p>
-
-
-          <!-- BLOCK_IO_API_KEY_2 -->
-
+          <!-- Gets current BTC price to calculate the exact BTC amount -->
           <% if @verification.payment_type == "Bitcoin" %>
             <% @satoshi = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
             <p><%= @satoshi %></p>
           <% else %>
             <%  %>
           <% end %>
+
+          <p><strong>Collector must scan this to verify the details of the Collection</strong>
+            <br>
+            Total Payment Amount to Collector: <%= @satoshi %>($<%= @verification.total_amount %> )</p>
+          <p>Payment Type: <%= @verification.payment_type %></p>
+
+
 
           <%= raw @qr.as_html %>
 
