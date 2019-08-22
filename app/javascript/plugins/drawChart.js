@@ -1,5 +1,6 @@
 // Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['corechart', 'line']});
+
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
@@ -27,6 +28,7 @@ function drawChart() {
   // console.log(kg);
   // Create the data table.
   var data = new google.visualization.DataTable();
+  console.log("hello " + data)
   data.addColumn('string', 'Date');
   data.addColumn('number', 'Amount');
   data.addColumn('number', 'KG');

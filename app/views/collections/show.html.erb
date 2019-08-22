@@ -1,6 +1,6 @@
-   <div class="container">
-      <div class="row justify-content-center align-items-center">
-        <div class="col-xs-12 col-md-12 col-12">
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xs-12 col-md-12 col-12">
 
 <h2 class="display-4 text-primary my-3">Collection:</h2>
 
@@ -44,23 +44,21 @@
 
 
 <% unless current_user.reviews.find_by(collection: @collection) %>
-<h3>Add a review of this collection, and your experience with this Recycling bank</h3>
+<h3 class="text-primary mt-5">Add Review</h3>
         <%= render 'reviews/form' %>
-        <% else %>
+<% else %>
 
-
-        <div class="d-flex flex-column mt-4">
-          <h4 class="text-primary">Review:</h4>
-            <div class="d-flex mt-3">
-              <p>
-                <% current_user.reviews.find_by(user: current_user).rating.times do %>
-                  <i class="y-star fas fa-star"></i>
-                <% end %>
-                </p>
-              <p class="ml-3 text-primary"><%= current_user.reviews.find_by(user: current_user).comment %></p>
-            </div>
-        </div>
-
+<div class="d-flex flex-column mt-4">
+  <h4 class="text-primary">Review:</h4>
+    <div class="d-flex mt-3">
+      <p>
+        <% current_user.reviews.find_by(user: current_user).rating.times do %>
+          <i class="y-star fas fa-star"></i>
+        <% end %>
+        </p>
+      <p class="ml-3 text-primary"><%= current_user.reviews.find_by(user: current_user).comment %></p>
+    </div>
+</div>
 <% end %>
 
 
