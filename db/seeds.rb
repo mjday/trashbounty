@@ -7,7 +7,7 @@ puts "Starting....."
   main_collector = User.create!(
     email: "komang@gmail.com",
     password: "123456",
-    username: "komang",
+    username: "Komang",
     phone_number: Faker::PhoneNumber.phone_number,
     bitcoin_address: "n4ZGR4MV4JhwSXjqoWREWnJVNRsje2EdiP"
     # btc address may still need to be defined
