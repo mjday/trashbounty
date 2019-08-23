@@ -22,7 +22,7 @@ td.white { border-color: #fff; }
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
 
     <% if Rails.env.production? %>
-      <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 2, level: :h) %>
+      <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
     <% else %>
       <% @qr = RQRCode::QRCode.new("https://91300a08.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
     <% end %>
