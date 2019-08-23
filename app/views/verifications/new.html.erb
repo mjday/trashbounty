@@ -6,7 +6,7 @@
       <%# @users.each do |user| %>
         <%#= user.bitcoin_address %>
       <%#s end %>
-
+      <h2 class="text-primary mb-3 text-center">Verfication Form</h2>
       <%= simple_form_for [@bank, @verification] do |f| %>
 
         <% @bank.plastics.each do |plastic| %>
@@ -22,7 +22,7 @@
 
         <%#= f.input :plastic, collection: @bank.plastics %>
 
-        <%= f.button :submit, class: "btn btn-primary", data: { toggle: "modal", target: "#exampleModal" } %>
+        <%= f.button :submit, class: "btn btn-primary w-100 my-4 text-white", data: { toggle: "modal", target: "#exampleModal" } %>
       <% end %>
 
      </div>
