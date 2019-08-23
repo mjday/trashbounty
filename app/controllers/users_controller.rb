@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     #  this could be improved for stability with @current_user.collections !=nil
 
 
-    @banks = Bank.where(user: @user)
+    @bank = Bank.where(user: @user).first
     @sum = get_total_kg
     @cash = cash_total
     @crypto_datas = @user.get_crypto_data

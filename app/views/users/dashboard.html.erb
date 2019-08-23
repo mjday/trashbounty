@@ -2,17 +2,17 @@
   table {
   border-width: 0;
   border-style: none;
-  border-color: #0000ff;
+  border-color: #4f80c7;
   border-collapse: collapse;
   }
   td {
-    border-left: solid 10px #000;
+    border-left: solid 10px #4f80c7;
     padding: 0;
     margin: 0;
     width: 0px;
     height: 10px;
     }
-  td.black { border-color: #000; }
+  td.black { border-color: #4f80c7; }
   td.white { border-color: #fff; }
 </style>
 <!-- Users will have different Dashboard views -->
@@ -49,21 +49,18 @@
           <div class="ml-2 mb-2">
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-phone mr-4"></i><%= @user.phone_number %></p>
             <p class="card-text text-primary"><i class="dashboard-icons fas fa-envelope mr-4"></i><%= @user.email%></p>
-            <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
-              <%= @user.bitcoin_address %>
-              <!-- Trigger the Modal -->
-              <button style="background-color:white;" data-toggle="modal" data-target="#exampleModal">
-               <i class="fas fa-qrcode" style="font-size:20px; color:black;"></i>
-              </button>
-            </p>
+            <button class="dash-button" style="background-color:white;" data-toggle="modal" data-target="#exampleModal">
+              <p class="card-text text-primary"><i class="dashboard-icons fab fa-bitcoin mr-4"></i>
+              <%= @user.bitcoin_address %> </p>
+            </button>
+
 
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="text-wrap modal-title text-primary" id="exampleModalLabel" >My Bitcoin Address
-                        <strong> <%= @user.bitcoin_address %> </strong></h5>
+                      <h3 class="text-wrap modal-title text-primary" id="exampleModalLabel" >Receive Payment</h3>
                     </div>
 
 
@@ -73,7 +70,7 @@
                         <% if @crypto_datas %>
                           <div class="container mb-3 text-primary">
                             <p><b>Confirmations: </b> <%= @crypto_datas[4] %></p>
-                            <p><b>TX ID: </b><%= @crypto_datas[0] %></p>
+                            <p><b>Transaction ID: </b><%= @crypto_datas[0] %></p>
                             <p><b>Amount: </b><%=@crypto_datas[1] %> BTC</p>
                             <p><b>Sender: </b><%= @crypto_datas[3] %></p>
                             <p><b>Receiver: </b><%= @crypto_datas[2] %></p>
@@ -92,7 +89,7 @@
 
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
