@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     # @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @user.business == false
     @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @current_user_ranking !=nil
     #  this could be improved for stability with @current_user.collections !=nil
-    @banks = Bank.where(user: @user)
+    @bank = Bank.find_by(user: @user)
     @sum = get_total_kg
     @cash = cash_total
 
