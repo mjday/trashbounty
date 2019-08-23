@@ -33,3 +33,21 @@
 .td-active {
   background-color: $success !important;
 }
+
+table {
+  border-width: 0;
+  border-style: none;
+  border-color: #4f80c7;
+  border-collapse: collapse;
+}
+
+td {
+  border-left: solid 5px #4f80c7;
+  padding: 0;
+  margin: 0;
+  width: 0px;
+  height: 5px;
+}
+
+td.black { border-color: #4f80c7; }
+td.white { border-color: #fff; }

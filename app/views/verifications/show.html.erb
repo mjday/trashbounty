@@ -1,36 +1,36 @@
 <style>
   table {
+  margin: auto;
   border-width: 0;
   border-style: none;
-  border-color: #0000ff;
+  border-color: #4f80c7;
   border-collapse: collapse;
 }
 
 td {
-  border-left: solid 10px #000;
+  border-left: solid 5px #4f80c7;
   padding: 0;
   margin: 0;
   width: 0px;
-  height: 10px;
+  height: 5px;
 }
 
-td.black { border-color: #000; }
+td.black { border-color: #4f80c7; }
 td.white { border-color: #fff; }
 </style>
 <div class="container verification-container">
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
 
     <% if Rails.env.production? %>
-      <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
+      <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 2, level: :h) %>
     <% else %>
       <% @qr = RQRCode::QRCode.new("https://91300a08.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
     <% end %>
-
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-xs-12">
 
-          <h5 class="text-center text-primary"><strong>Collector must scan to Verify details</strong></h5>
+          <h3 class="text-center text-primary">Scan to Verify Transaction</h3>
 
           <!-- Gets current BTC price to calculate the exact BTC amount -->
           <!-- <%# if @verification.payment_type == "Bitcoin" %>
@@ -44,12 +44,9 @@ td.white { border-color: #fff; }
             <p class="text-primary">Total Amount: $<%#= @verification.total_amount %></p>
           <%# end %> -->
 
-          <hr>
 
-          <%= raw @qr.as_html %>
-
-          <hr>
-
+          <hr mb-4>
+            <%= raw @qr.as_html %>
         </div>
       </div>
     </div>
