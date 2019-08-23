@@ -17,7 +17,7 @@ td {
 td.black { border-color: #000; }
 td.white { border-color: #fff; }
 </style>
-<div class="container">
+<div class="container verification-container">
   <div id="business_view" class="<%= 'none' unless current_user.business %>">
 
     <% if Rails.env.production? %>
@@ -58,7 +58,7 @@ td.white { border-color: #fff; }
 <!-- AFTER QR CODE IS SCANNED BY COLLECTOR -->
   <div id="collector_view" class="<%= 'none' if current_user.business %>">
 
-    <h3>Confirm the Details </h3>
+    <h3 class="text-primary text-center mt-4 mb-3">Confirm Transaction Details </h3>
     <%= simple_form_for @collection do |f| %>
 
       <!-- <%# if @verification.payment_type == "Bitcoin" %>
@@ -86,9 +86,10 @@ td.white { border-color: #fff; }
 
       <%= f.hidden_field :bank_id, value: @bank.id.to_i %>
 
-
-      <%= f.submit 'Accept', class: 'btn btn-primary' %>
-      <%= link_to 'Reject', users_dashboard_path %>
+      <div>
+        <%= f.submit 'Accept', class: 'btn btn-primary text-white w-100 mt-3' %>
+        <%= link_to 'Reject', users_dashboard_path, class: "btn btn-danger mt-3 w-100" %>
+      </div>
     <% end %>
   </div>
 </div>
