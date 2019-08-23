@@ -15,25 +15,17 @@ class User < ApplicationRecord
     # this works because it the specific current address had 1 tx only
     tx = response["data"]["txs"][0]
 
-    return "No previous transactions" if tx.nil?
-
-    # arr = []
-    transaction = tx["txid"]
-    amount = tx["amounts_received"][0]["amount"]
-    recipient = tx["amounts_received"][0]["recipient"]
-    sender = tx["senders"][0]
-
-    # return arr
-
-    # complete_tx = "TX Hash: #{transaction}" + "(Recycle Bank) #{sender} sent: " + "Amount: #{amount} to: " + "Recipient: #{recipient}"
-    return "TX ID: #{transaction} #{amount} BTC - From (Recycle Bank): #{sender}  | To: #{recipient}  "
-
-    # return {
-    #   transaction: tx["txid"],
-    #   recipient: tx["amounts_received"][0]["recipient"],
-    #   amount: tx["amounts_received"][0]["amount"],
-    #   sender: tx["senders"][0]
-    # }
+    arr = []
+    if tx.nil?
+      return nil
+    else
+      arr << transaction = tx["txid"]
+      arr << amount = tx["amounts_received"][0]["amount"]
+      arr << recipient = tx["amounts_received"][0]["recipient"]
+      arr << sender = tx["senders"][0]
+      arr << conf = tx["confirmations"]
+      return arr
+    end
 
   end
 end
