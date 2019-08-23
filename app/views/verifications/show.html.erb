@@ -23,7 +23,7 @@ td.white { border-color: #fff; }
     <% if Rails.env.production? %>
       <% @qr = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/#{@bank.id}/verifications/#{@verification.id}", size: 7, level: :h) %>
     <% else %>
-      <% @qr = RQRCode::QRCode.new("https://a4bf5913.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
+      <% @qr = RQRCode::QRCode.new("https://91300a08.ngrok.io/banks/#{@bank.id}/verifications/#{@verification.id}", size: 6, level: :h) %>
     <% end %>
 
     <div class="container">
@@ -33,16 +33,16 @@ td.white { border-color: #fff; }
           <h5 class="text-center text-primary"><strong>Collector must scan to Verify details</strong></h5>
 
           <!-- Gets current BTC price to calculate the exact BTC amount -->
-          <% if @verification.payment_type == "Bitcoin" %>
-            <% @satoshi = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
-            <p class="text-primary">Total Payment Amount to Collector: <%= @satoshi %> BTC
-              ($<%= @verification.total_amount %>)</p>
-            <p class="text-primary">Payment Type: <%= @verification.payment_type %></p>
-          <% else %>
-            <!-- IF PAYMENT TYPE IS CASH -->
-            <p class="text-primary">Payment Type: <%= @verification.payment_type %></p>
-            <p class="text-primary">Total Amount: $<%= @verification.total_amount %></p>
-          <% end %>
+          <!-- <%# if @verification.payment_type == "Bitcoin" %>
+            <%# @satoshi = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
+            <p class="text-primary">Total Payment Amount to Collector: <%#= @satoshi %> BTC
+              ($<%#= @verification.total_amount %>)</p>
+            <p class="text-primary">Payment Type: <%#= @verification.payment_type %></p>
+          <%# else %>
+
+            <p class="text-primary">Payment Type: <%#= @verification.payment_type %></p>
+            <p class="text-primary">Total Amount: $<%#= @verification.total_amount %></p>
+          <%# end %> -->
 
           <hr>
 
@@ -61,12 +61,12 @@ td.white { border-color: #fff; }
     <h3>Confirm the Details </h3>
     <%= simple_form_for @collection do |f| %>
 
-      <% if @verification.payment_type == "Bitcoin" %>
-            <% @satoshi_2 = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
-            <p><%= @satoshi_2 %></p>
-          <% else %>
-            <%  %>
-          <% end %>
+      <!-- <%# if @verification.payment_type == "Bitcoin" %>
+            <%# @satoshi_2 = (@verification.total_amount / @verification.btc_price.to_i).to_f.round(8)  %>
+            <p><%#= @satoshi_2 %></p>
+          <%# else %>
+            <%#  %>
+          <%# end %> -->
 
       <%= f.input :date, disabled: true, input_html: { value: @verification.date } %>
       <%= f.hidden_field :date, value: @verification.date %>
@@ -75,8 +75,7 @@ td.white { border-color: #fff; }
       <%= f.hidden_field :total_kg, value: @verification.total_kg %>
 
       <%= f.input :total_amount, disabled: true,
-      input_html: { value: @verification.total_amount },
-       hint: "#{@satoshi} BTC" %>
+      input_html: { value: @verification.total_amount } %>
 
 
       <%= f.hidden_field :total_amount, value: @verification.total_amount %>
