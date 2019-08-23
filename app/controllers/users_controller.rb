@@ -3,8 +3,6 @@ class UsersController < ApplicationController
     @user = current_user
     @collections = Collection.where(user: @user).order('date asc')
 
-    @crypto_datas = @user.get_crypto_data
-
     @verifications = Collection.where(bank_id: @user.bank.id) if @user.business
     users = User.joins(:collections).group('users.id').select("users.id AS id, users.username AS name, SUM(collections.total_kg) as tot_kg").order("tot_kg DESC")
     # @current_user_ranking = (users.each_with_index.select { |x| x[0].id == @user.id }[0][1]) + 1 if @user.business == false
@@ -19,6 +17,7 @@ class UsersController < ApplicationController
     @banks = Bank.where(user: @user)
     @sum = get_total_kg
     @cash = cash_total
+    @crypto_datas = @user.get_crypto_data
 
     # when user signs up, if they don't already have a Bitcoin address, this breaks
     # bitcoin_address: nil
